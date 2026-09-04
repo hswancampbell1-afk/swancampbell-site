@@ -172,6 +172,26 @@
   .who li b { color: var(--ink); font-weight: 600; }
   .stack { margin-top: 18px; }
 
+  /* ---------- rates ---------- */
+  .rates {
+    width: 100%; border-collapse: collapse;
+    border-top: 1px solid var(--line); margin: 0;
+  }
+  .rates th, .rates td {
+    text-align: left; padding: 15px 0; vertical-align: baseline;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .rates th {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--ink); letter-spacing: -0.005em; white-space: nowrap; width: 124px;
+  }
+  .rates .fee {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--accent); white-space: nowrap; width: 82px; padding-right: 20px;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .rates .what { color: var(--ink-2); font-size: 16.5px; }
+
   /* ---------- start ---------- */
   .start { background: var(--accent-bg); border: 1px solid var(--line); padding: 28px 28px 26px; }
   .start h2 { margin-bottom: 12px; }
@@ -204,6 +224,10 @@
     .does { grid-template-columns: 1fr; }
     .does dt { padding-bottom: 0; border-bottom: 0; }
     .does dd { padding-left: 0; padding-top: 3px; }
+    .rates, .rates tbody, .rates tr, .rates th, .rates td { display: block; width: auto; }
+    .rates tr { padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+    .rates th, .rates td { padding: 0; border-bottom: 0; }
+    .rates .fee { padding: 2px 0 5px; }
     .guarantee, .start { padding: 22px 20px; }
   }
 
@@ -275,10 +299,34 @@
   </section>
 
   <section>
+    <h2>What it costs</h2>
+    <table class="rates">
+      <tbody>
+        <tr>
+          <th scope="row">Inbox</th>
+          <td class="fee">£450</td>
+          <td class="what">One mailbox, sorted through the day, with replies drafted and waiting.</td>
+        </tr>
+        <tr>
+          <th scope="row">Back Office</th>
+          <td class="fee">£950</td>
+          <td class="what">Everything above, plus the write-ups, the receipts and the prep.</td>
+        </tr>
+        <tr>
+          <th scope="row">The Firm</th>
+          <td class="fee">£1,800</td>
+          <td class="what">Back Office for up to three people in the same practice.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="also">A month at a time. No setup fee, no minimum term, and no notice beyond the month you're in.</p>
+  </section>
+
+  <section>
     <div class="start">
       <h2>Starting</h2>
-      <p class="price">£450 for four weeks</p>
-      <p>No setup fee, stop whenever. We start with the inbox, because it's where you'll feel it first, and add the meeting write-ups in week two.</p>
+      <p class="price">The first month is £450</p>
+      <p>That's the Inbox rate, not a trial price — nothing expires and nothing jumps in month two. We start with the inbox because it's where you'll feel it first, and you move up only if you want to.</p>
       <p>Week one will be rough — tell me what's wrong and it gets fixed. By week three you should have stopped noticing it. At the end you'll know what it actually gave you back, and you carry on or you don't.</p>
       <a class="mail" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
     </div>
