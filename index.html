@@ -1,0 +1,245 @@
+<title>Swan Campbell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ink:       #17191B;
+    --ink-2:     #3E4348;
+    --muted:     #6E7378;
+    --paper:     #F7F7F5;
+    --surface:   #FFFFFF;
+    --line:      #DEDEDA;
+    --line-soft: #EAEAE6;
+    --accent:    #2F4858;
+    --accent-2:  #4A6A7E;
+    --accent-bg: #E7EDF1;
+
+    --f-head: "Literata", Georgia, "Times New Roman", serif;
+    --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink:       #ECEDEB;
+      --ink-2:     #B5B9BC;
+      --muted:     #8A8F93;
+      --paper:     #141618;
+      --surface:   #1C1F22;
+      --line:      #2C3034;
+      --line-soft: #24272A;
+      --accent:    #9DBACB;
+      --accent-2:  #B7CEDC;
+      --accent-bg: #1B242A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink:       #ECEDEB;
+    --ink-2:     #B5B9BC;
+    --muted:     #8A8F93;
+    --paper:     #141618;
+    --surface:   #1C1F22;
+    --line:      #2C3034;
+    --line-soft: #24272A;
+    --accent:    #9DBACB;
+    --accent-2:  #B7CEDC;
+    --accent-bg: #1B242A;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 26px; }
+
+  /* ---------- masthead ---------- */
+  header.top {
+    padding: 30px 0 0;
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 6px 20px;
+  }
+  .mark {
+    font-family: var(--f-head); font-weight: 600; font-size: 19px;
+    letter-spacing: -0.01em; color: var(--ink);
+  }
+  .top .where {
+    font-size: 13.5px; color: var(--muted); letter-spacing: 0.02em;
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 66px 0 8px; }
+  h1 {
+    font-family: var(--f-head); font-weight: 600;
+    font-size: clamp(31px, 5.6vw, 44px); line-height: 1.18;
+    letter-spacing: -0.018em; margin: 0; text-wrap: balance;
+    max-width: 17ch;
+  }
+  .lede {
+    font-size: 19.5px; line-height: 1.55; color: var(--ink-2);
+    margin: 22px 0 0; max-width: 46ch;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  section { padding: 44px 0; border-top: 1px solid var(--line-soft); }
+  section:first-of-type { border-top: 0; }
+
+  h2 {
+    font-family: var(--f-head); font-weight: 600; font-size: 22px;
+    letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance;
+  }
+  p { margin: 0 0 15px; max-width: 62ch; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+
+  .eyebrow {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.13em;
+    text-transform: uppercase; color: var(--accent); margin: 0 0 14px;
+  }
+
+  /* ---------- the four things ---------- */
+  .does { border-top: 1px solid var(--line); margin: 4px 0 0; }
+  .does .row {
+    display: grid; grid-template-columns: 172px minmax(0,1fr);
+    gap: 2px 26px; padding: 17px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .does .what {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--ink); letter-spacing: -0.005em;
+  }
+  .does .how { color: var(--ink-2); font-size: 16.5px; }
+  .also { font-size: 16px; color: var(--muted); margin: 16px 0 0; }
+
+  /* ---------- guarantee ---------- */
+  .guarantee {
+    background: var(--surface); border: 1px solid var(--line);
+    padding: 26px 28px; margin: 4px 0 0;
+  }
+  .guarantee p:first-of-type {
+    font-family: var(--f-head); font-size: 19px; line-height: 1.45;
+    color: var(--ink); margin-bottom: 13px;
+  }
+  .guarantee p { font-size: 16px; color: var(--ink-2); }
+
+  /* ---------- who ---------- */
+  .who { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .who li {
+    padding-left: 20px; position: relative; color: var(--ink-2); font-size: 16.5px;
+  }
+  .who li::before {
+    content: ""; position: absolute; left: 0; top: 11px;
+    width: 8px; height: 1px; background: var(--accent);
+  }
+  .who li b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- start ---------- */
+  .start { background: var(--accent-bg); border: 1px solid var(--line); padding: 28px 28px 26px; }
+  .start h2 { margin-bottom: 12px; }
+  .start .price {
+    font-family: var(--f-head); font-size: 27px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.02em; margin: 0 0 12px;
+  }
+  .start p { color: var(--ink-2); font-size: 16.5px; }
+
+  a.mail {
+    display: inline-block; margin-top: 18px;
+    font-family: var(--f-head); font-size: 18px; font-weight: 500;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 1px solid var(--accent-2); padding-bottom: 2px;
+  }
+  a.mail:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  a.mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+  footer {
+    padding: 34px 0 46px; margin-top: 40px; border-top: 1px solid var(--line);
+    font-size: 13.5px; color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: space-between;
+  }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 620px) {
+    body { font-size: 16.5px; }
+    .hero { padding-top: 48px; }
+    .does .row { grid-template-columns: 1fr; gap: 3px; }
+    .guarantee, .start { padding: 22px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="top">
+    <span class="mark">Swan Campbell</span>
+    <span class="where">Back-office support · United Kingdom</span>
+  </header>
+
+  <div class="hero">
+    <h1>The admin you keep meaning to deal with, dealt with.</h1>
+    <p class="lede">Most independent consultants are doing a few hours a week of work they'd never put on a client invoice. <strong>That's the work I take.</strong></p>
+  </div>
+
+  <section>
+    <p class="eyebrow">What that covers</p>
+    <div class="does">
+      <div class="row">
+        <span class="what">Your inbox</span>
+        <span class="how">Sorted through the day. Replies drafted and waiting for a yes.</span>
+      </div>
+      <div class="row">
+        <span class="what">Your meetings</span>
+        <span class="how">Written up — decisions, actions, who owns what, by when.</span>
+      </div>
+      <div class="row">
+        <span class="what">Your receipts</span>
+        <span class="how">Captured into your spreadsheet as they land, anything odd flagged.</span>
+      </div>
+      <div class="row">
+        <span class="what">Your travel</span>
+        <span class="how">Six confirmation emails become one itinerary, in your calendar.</span>
+      </div>
+    </div>
+    <p class="also">Scheduling too, whenever you want it. Four things, done properly, and nothing else.</p>
+  </section>
+
+  <section>
+    <p class="eyebrow">One thing up front</p>
+    <div class="guarantee">
+      <p>Nothing goes out in your name without you approving it.</p>
+      <p>Replies are drafted, never sent. Calendar invitations go only when you press the button. That isn't a promise about how I work — it's built into the software I use, and an automated test fails if anyone ever changes it.</p>
+      <p>Drafts appear in your own Drafts folder as mail arrives, so you may see one before I have. My review improves them; you decide what gets sent.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who this is for</h2>
+    <ul class="who">
+      <li><b>Fractional CFOs and CTOs</b> — three or four client companies colliding in one inbox.</li>
+      <li><b>Independent consultants</b> — billing by the hour, losing evenings to expenses.</li>
+      <li><b>Firms of two to fifteen</b> — where the principal is also the operations department.</li>
+    </ul>
+    <p style="margin-top:18px">Mostly Microsoft 365. Google Workspace is fine too.</p>
+  </section>
+
+  <section>
+    <div class="start">
+      <h2>Starting</h2>
+      <p class="price">£450 for four weeks</p>
+      <p>No setup fee, stop whenever. We start with the inbox, because it's where you'll feel it first, and add the meeting write-ups in week two.</p>
+      <p>Week one will be rough — tell me what's wrong and it gets fixed. By week three you should have stopped noticing it. At the end you'll know what it actually gave you back, and you carry on or you don't.</p>
+      <a class="mail" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>Swan Campbell — Harrison Swan-Campbell</span>
+    <span>swancampbell.co.uk</span>
+  </footer>
+
+</div>
