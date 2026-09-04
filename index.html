@@ -211,12 +211,12 @@
      animation never runs nothing is hidden. */
   @media (prefers-reduced-motion: no-preference) {
     header.top, .hero h1, .hero .lede {
-      animation: settle 820ms cubic-bezier(.16, 1, .3, 1) backwards;
+      animation: settle 520ms cubic-bezier(.16, 1, .3, 1) backwards;
     }
-    .hero h1   { animation-delay: 80ms; }
-    .hero .lede { animation-delay: 180ms; }
+    .hero h1   { animation-delay: 60ms; }
+    .hero .lede { animation-delay: 130ms; }
     @keyframes settle {
-      from { opacity: 0; transform: translateY(9px); filter: blur(7px); }
+      from { opacity: 0; transform: translateY(9px); filter: blur(4px); }
     }
   }
   @media (prefers-reduced-motion: reduce) {
