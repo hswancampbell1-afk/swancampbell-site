@@ -1,13 +1,31 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Swan Campbell</title>
+<meta name="description" content="Inbox, meeting write-ups, receipts and travel, handled for independent consultants and small professional firms in the UK. Nothing goes out in your name without you approving it.">
+<link rel="canonical" href="https://swancampbell.co.uk/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Swan Campbell">
+<meta property="og:title" content="Swan Campbell — back-office support">
+<meta property="og:description" content="The admin you keep meaning to deal with, dealt with. Inbox, meeting write-ups, receipts and travel, for independent consultants and small firms.">
+<meta property="og:url" content="https://swancampbell.co.uk/">
+<meta name="twitter:card" content="summary">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Public+Sans:wght@400;500;600&display=swap">
 
 <style>
   :root {
+    color-scheme: light dark;
+
     --ink:       #17191B;
     --ink-2:     #3E4348;
-    --muted:     #6E7378;
+    --muted:     #676C71;
     --paper:     #F7F7F5;
     --surface:   #FFFFFF;
     --line:      #DEDEDA;
@@ -15,6 +33,7 @@
     --accent:    #2F4858;
     --accent-2:  #4A6A7E;
     --accent-bg: #E7EDF1;
+    --select:    #DDE5EA;
 
     --f-head: "Literata", Georgia, "Times New Roman", serif;
     --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -32,6 +51,7 @@
       --accent:    #9DBACB;
       --accent-2:  #B7CEDC;
       --accent-bg: #1B242A;
+      --select:    #2B3A44;
     }
   }
   :root[data-theme="dark"] {
@@ -45,24 +65,39 @@
     --accent:    #9DBACB;
     --accent-2:  #B7CEDC;
     --accent-bg: #1B242A;
+    --select:    #2B3A44;
   }
 
   * { box-sizing: border-box; }
 
+  html { scrollbar-color: var(--line) transparent; }
+
   body {
+    margin: 0;
     background: var(--paper);
     color: var(--ink);
     font-family: var(--f-body);
     font-size: 17px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    caret-color: var(--accent);
+    accent-color: var(--accent);
   }
+
+  ::selection { background: var(--select); color: var(--ink); }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border: 3px solid var(--paper); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
 
   .wrap { max-width: 680px; margin: 0 auto; padding: 0 26px; }
 
   /* ---------- masthead ---------- */
   header.top {
-    padding: 30px 0 0;
+    padding: 30px 0 14px; border-bottom: 1px solid var(--line-soft);
     display: flex; align-items: baseline; justify-content: space-between;
     flex-wrap: wrap; gap: 6px 20px;
   }
@@ -99,32 +134,29 @@
   p:last-child { margin-bottom: 0; }
   strong { font-weight: 600; }
 
-  .eyebrow {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.13em;
-    text-transform: uppercase; color: var(--accent); margin: 0 0 14px;
-  }
-
   /* ---------- the four things ---------- */
-  .does { border-top: 1px solid var(--line); margin: 4px 0 0; }
-  .does .row {
-    display: grid; grid-template-columns: 172px minmax(0,1fr);
-    gap: 2px 26px; padding: 17px 0; border-bottom: 1px solid var(--line-soft);
+  .does {
+    display: grid; grid-template-columns: 172px minmax(0, 1fr);
+    border-top: 1px solid var(--line); margin: 0;
   }
-  .does .what {
+  .does dt, .does dd {
+    margin: 0; padding: 17px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .does dt {
     font-family: var(--f-head); font-weight: 600; font-size: 17px;
     color: var(--ink); letter-spacing: -0.005em;
   }
-  .does .how { color: var(--ink-2); font-size: 16.5px; }
+  .does dd { padding-left: 26px; color: var(--ink-2); font-size: 16.5px; }
   .also { font-size: 16px; color: var(--muted); margin: 16px 0 0; }
 
   /* ---------- guarantee ---------- */
   .guarantee {
     background: var(--surface); border: 1px solid var(--line);
-    padding: 26px 28px; margin: 4px 0 0;
+    padding: 26px 28px; margin: 0;
   }
-  .guarantee p:first-of-type {
-    font-family: var(--f-head); font-size: 19px; line-height: 1.45;
-    color: var(--ink); margin-bottom: 13px;
+  .guarantee h2 {
+    font-size: 19px; line-height: 1.45; font-weight: 600;
+    letter-spacing: -0.006em; margin: 0 0 13px;
   }
   .guarantee p { font-size: 16px; color: var(--ink-2); }
 
@@ -138,6 +170,7 @@
     width: 8px; height: 1px; background: var(--accent);
   }
   .who li b { color: var(--ink); font-weight: 600; }
+  .stack { margin-top: 18px; }
 
   /* ---------- start ---------- */
   .start { background: var(--accent-bg); border: 1px solid var(--line); padding: 28px 28px 26px; }
@@ -145,6 +178,7 @@
   .start .price {
     font-family: var(--f-head); font-size: 27px; font-weight: 600;
     color: var(--ink); letter-spacing: -0.02em; margin: 0 0 12px;
+    font-variant-numeric: lining-nums tabular-nums;
   }
   .start p { color: var(--ink-2); font-size: 16.5px; }
 
@@ -153,6 +187,7 @@
     font-family: var(--f-head); font-size: 18px; font-weight: 500;
     color: var(--accent); text-decoration: none;
     border-bottom: 1px solid var(--accent-2); padding-bottom: 2px;
+    transition: color 160ms cubic-bezier(.16,1,.3,1), border-color 160ms cubic-bezier(.16,1,.3,1);
   }
   a.mail:hover { color: var(--ink); border-bottom-color: var(--ink); }
   a.mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
@@ -162,16 +197,34 @@
     font-size: 13.5px; color: var(--muted);
     display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: space-between;
   }
-  footer a { color: var(--muted); }
 
   @media (max-width: 620px) {
     body { font-size: 16.5px; }
     .hero { padding-top: 48px; }
-    .does .row { grid-template-columns: 1fr; gap: 3px; }
+    .does { grid-template-columns: 1fr; }
+    .does dt { padding-bottom: 0; border-bottom: 0; }
+    .does dd { padding-left: 0; padding-top: 3px; }
     .guarantee, .start { padding: 22px 20px; }
   }
-  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  /* One authored moment: the page settles. Base state is visible, so if the
+     animation never runs nothing is hidden. */
+  @media (prefers-reduced-motion: no-preference) {
+    header.top, .hero h1, .hero .lede {
+      animation: settle 820ms cubic-bezier(.16, 1, .3, 1) backwards;
+    }
+    .hero h1   { animation-delay: 80ms; }
+    .hero .lede { animation-delay: 180ms; }
+    @keyframes settle {
+      from { opacity: 0; transform: translateY(9px); filter: blur(7px); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
 </style>
+</head>
+<body>
 
 <div class="wrap">
 
@@ -186,32 +239,26 @@
   </div>
 
   <section>
-    <p class="eyebrow">What that covers</p>
-    <div class="does">
-      <div class="row">
-        <span class="what">Your inbox</span>
-        <span class="how">Sorted through the day. Replies drafted and waiting for a yes.</span>
-      </div>
-      <div class="row">
-        <span class="what">Your meetings</span>
-        <span class="how">Written up — decisions, actions, who owns what, by when.</span>
-      </div>
-      <div class="row">
-        <span class="what">Your receipts</span>
-        <span class="how">Captured into your spreadsheet as they land, anything odd flagged.</span>
-      </div>
-      <div class="row">
-        <span class="what">Your travel</span>
-        <span class="how">Six confirmation emails become one itinerary, in your calendar.</span>
-      </div>
-    </div>
+    <h2>What that covers</h2>
+    <dl class="does">
+      <dt>Your inbox</dt>
+      <dd>Sorted through the day. Replies drafted and waiting for a yes.</dd>
+
+      <dt>Your meetings</dt>
+      <dd>Written up — decisions, actions, who owns what, by when.</dd>
+
+      <dt>Your receipts</dt>
+      <dd>Captured into your spreadsheet as they land, anything odd flagged.</dd>
+
+      <dt>Your travel</dt>
+      <dd>Six confirmation emails become one itinerary, in your calendar.</dd>
+    </dl>
     <p class="also">Scheduling too, whenever you want it. Four things, done properly, and nothing else.</p>
   </section>
 
   <section>
-    <p class="eyebrow">One thing up front</p>
     <div class="guarantee">
-      <p>Nothing goes out in your name without you approving it.</p>
+      <h2>Nothing goes out in your name without you approving it.</h2>
       <p>Replies are drafted, never sent. Calendar invitations go only when you press the button. That isn't a promise about how I work — it's built into the software I use, and an automated test fails if anyone ever changes it.</p>
       <p>Drafts appear in your own Drafts folder as mail arrives, so you may see one before I have. My review improves them; you decide what gets sent.</p>
     </div>
@@ -224,7 +271,7 @@
       <li><b>Independent consultants</b> — billing by the hour, losing evenings to expenses.</li>
       <li><b>Firms of two to fifteen</b> — where the principal is also the operations department.</li>
     </ul>
-    <p style="margin-top:18px">Mostly Microsoft 365. Google Workspace is fine too.</p>
+    <p class="stack">Mostly Microsoft 365. Google Workspace is fine too.</p>
   </section>
 
   <section>
@@ -243,3 +290,6 @@
   </footer>
 
 </div>
+
+</body>
+</html>
