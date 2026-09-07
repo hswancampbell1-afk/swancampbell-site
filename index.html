@@ -17,23 +17,42 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Public+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=Public+Sans:wght@400;500;600&display=swap">
 
 <style>
+  /* ------------------------------------------------------------------
+     A practice letterhead, and a ruled ledger.
+
+     The clients are accountants, fractional CFOs and consultants: people
+     who read ruled columns and tabular figures all day. So the page is
+     built the way the documents they already trust are built - hairline
+     rules, figures aligned on their own column, a masthead that behaves
+     like stationery. One dark panel carries the guarantee, because that
+     claim is the reason anyone hands over a mailbox.
+     ------------------------------------------------------------------ */
   :root {
     color-scheme: light dark;
 
-    --ink:       #17191B;
-    --ink-2:     #3E4348;
-    --muted:     #676C71;
-    --paper:     #F7F7F5;
+    --ink:       #14171A;
+    --ink-2:     #454B51;
+    --muted:     #757B81;
+    --paper:     #FBFAF8;
     --surface:   #FFFFFF;
-    --line:      #DEDEDA;
-    --line-soft: #EAEAE6;
-    --accent:    #2F4858;
-    --accent-2:  #4A6A7E;
-    --accent-bg: #E7EDF1;
-    --select:    #DDE5EA;
+    --line:      #D6D3CC;
+    --line-soft: #E7E4DD;
+    --accent:    #1F3D4C;
+    --accent-2:  #3A6076;
+    --accent-bg: #EAEFF2;
+    --brass:     #8C7141;
+    --select:    #DCE4E9;
+
+    /* The spine. Fixed dark in light mode; lifted above the ground in
+       dark mode, so it stays a distinct block either way. */
+    --spine-bg:   #171B1E;
+    --spine-ink:  #EDEEEC;
+    --spine-ink2: #B0B6B9;
+    --spine-line: #333A3F;
+    --spine-mark: #C9A96A;
 
     --f-head: "Literata", Georgia, "Times New Roman", serif;
     --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -43,29 +62,43 @@
     :root:not([data-theme="light"]) {
       --ink:       #ECEDEB;
       --ink-2:     #B5B9BC;
-      --muted:     #8A8F93;
-      --paper:     #141618;
-      --surface:   #1C1F22;
-      --line:      #2C3034;
+      --muted:     #888E92;
+      --paper:     #131517;
+      --surface:   #1B1E21;
+      --line:      #2E3236;
       --line-soft: #24272A;
       --accent:    #9DBACB;
       --accent-2:  #B7CEDC;
-      --accent-bg: #1B242A;
+      --accent-bg: #1A2329;
+      --brass:     #C0A26B;
       --select:    #2B3A44;
+
+      --spine-bg:   #242A2F;
+      --spine-ink:  #F1F2F0;
+      --spine-ink2: #BFC5C8;
+      --spine-line: #3B434A;
+      --spine-mark: #D3B478;
     }
   }
   :root[data-theme="dark"] {
     --ink:       #ECEDEB;
     --ink-2:     #B5B9BC;
-    --muted:     #8A8F93;
-    --paper:     #141618;
-    --surface:   #1C1F22;
-    --line:      #2C3034;
+    --muted:     #888E92;
+    --paper:     #131517;
+    --surface:   #1B1E21;
+    --line:      #2E3236;
     --line-soft: #24272A;
     --accent:    #9DBACB;
     --accent-2:  #B7CEDC;
-    --accent-bg: #1B242A;
+    --accent-bg: #1A2329;
+    --brass:     #C0A26B;
     --select:    #2B3A44;
+
+    --spine-bg:   #242A2F;
+    --spine-ink:  #F1F2F0;
+    --spine-ink2: #BFC5C8;
+    --spine-line: #3B434A;
+    --spine-mark: #D3B478;
   }
 
   * { box-sizing: border-box; }
@@ -93,146 +126,191 @@
 
   a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
 
-  .wrap { max-width: 680px; margin: 0 auto; padding: 0 26px; }
+  /* Structure runs wide; prose stays narrow. That difference is most of
+     the rhythm the old single-column page did not have. */
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+  /* Small-caps label. Used for every section heading, so the page reads
+     as a set of ruled entries rather than a stack of articles. */
+  .label {
+    font-family: var(--f-body);
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .label::after {
+    content: ""; flex: 1 1 auto; height: 1px;
+    background: var(--line); min-width: 20px;
+  }
 
   /* ---------- masthead ---------- */
   header.top {
-    padding: 30px 0 14px; border-bottom: 1px solid var(--line-soft);
+    padding: 26px 0 15px;
+    border-bottom: 2px solid var(--ink);
     display: flex; align-items: baseline; justify-content: space-between;
-    flex-wrap: wrap; gap: 6px 20px;
+    flex-wrap: wrap; gap: 4px 20px;
   }
   .mark {
-    font-family: var(--f-head); font-weight: 600; font-size: 19px;
-    letter-spacing: -0.01em; color: var(--ink);
+    font-family: var(--f-head); font-weight: 700; font-size: 20px;
+    letter-spacing: 0.01em; color: var(--ink);
   }
   .top .where {
-    font-size: 13.5px; color: var(--muted); letter-spacing: 0.02em;
+    font-size: 11.5px; color: var(--muted);
+    letter-spacing: 0.11em; text-transform: uppercase; font-weight: 500;
   }
 
   /* ---------- hero ---------- */
-  .hero { padding: 66px 0 8px; }
+  .hero { padding: 78px 0 74px; }
   h1 {
     font-family: var(--f-head); font-weight: 600;
-    font-size: clamp(31px, 5.6vw, 44px); line-height: 1.18;
-    letter-spacing: -0.018em; margin: 0; text-wrap: balance;
-    max-width: 17ch;
+    font-size: clamp(34px, 6.4vw, 61px); line-height: 1.08;
+    letter-spacing: -0.028em; margin: 0; text-wrap: balance;
+    max-width: 15ch;
   }
   .lede {
-    font-size: 19.5px; line-height: 1.55; color: var(--ink-2);
-    margin: 22px 0 0; max-width: 46ch;
+    font-size: clamp(18px, 2.3vw, 21px); line-height: 1.5; color: var(--ink-2);
+    margin: 28px 0 0; max-width: 44ch;
   }
   .lede strong { color: var(--ink); font-weight: 600; }
 
-  section { padding: 44px 0; border-top: 1px solid var(--line-soft); }
-  section:first-of-type { border-top: 0; }
+  section { padding: 52px 0; border-top: 1px solid var(--line-soft); }
 
   h2 {
-    font-family: var(--f-head); font-weight: 600; font-size: 22px;
-    letter-spacing: -0.012em; margin: 0 0 16px; text-wrap: balance;
+    font-family: var(--f-head); font-weight: 600; font-size: 23px;
+    letter-spacing: -0.014em; margin: 0 0 16px; text-wrap: balance;
   }
   p { margin: 0 0 15px; max-width: 62ch; }
   p:last-child { margin-bottom: 0; }
   strong { font-weight: 600; }
 
-  /* ---------- the four things ---------- */
+  /* ---------- the four things: ruled entries ---------- */
   .does {
-    display: grid; grid-template-columns: 172px minmax(0, 1fr);
+    display: grid; grid-template-columns: 200px minmax(0, 1fr);
     border-top: 1px solid var(--line); margin: 0;
   }
   .does dt, .does dd {
-    margin: 0; padding: 17px 0; border-bottom: 1px solid var(--line-soft);
+    margin: 0; padding: 19px 0; border-bottom: 1px solid var(--line-soft);
   }
   .does dt {
-    font-family: var(--f-head); font-weight: 600; font-size: 17px;
-    color: var(--ink); letter-spacing: -0.005em;
+    font-family: var(--f-head); font-weight: 600; font-size: 17.5px;
+    color: var(--ink); letter-spacing: -0.008em;
   }
-  .does dd { padding-left: 26px; color: var(--ink-2); font-size: 16.5px; }
-  .also { font-size: 16px; color: var(--muted); margin: 16px 0 0; }
+  .does dd { padding-left: 28px; color: var(--ink-2); font-size: 16.5px; }
+  .also { font-size: 16px; color: var(--muted); margin: 18px 0 0; max-width: 62ch; }
 
-  /* ---------- guarantee ---------- */
-  .guarantee {
-    background: var(--surface); border: 1px solid var(--line);
-    padding: 26px 28px; margin: 0;
+  /* ---------- the spine: full-bleed guarantee ---------- */
+  .spine {
+    background: var(--spine-bg); color: var(--spine-ink);
+    border-top: 0; padding: 64px 0 66px;
   }
-  .guarantee h2 {
-    font-size: 19px; line-height: 1.45; font-weight: 600;
-    letter-spacing: -0.006em; margin: 0 0 13px;
+  .spine .label { color: var(--spine-mark); }
+  .spine .label::after { background: var(--spine-line); }
+  .spine h2 {
+    font-size: clamp(23px, 3.4vw, 33px); line-height: 1.24;
+    max-width: 20ch; color: var(--spine-ink);
   }
-  .guarantee p { font-size: 16px; color: var(--ink-2); }
+  .spine p { color: var(--spine-ink2); font-size: 16.5px; max-width: 58ch; }
+  .spine p + p { margin-top: 15px; }
 
   /* ---------- who ---------- */
-  .who { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .who { display: grid; gap: 13px; margin: 0; padding: 0; list-style: none; }
   .who li {
-    padding-left: 20px; position: relative; color: var(--ink-2); font-size: 16.5px;
+    padding-left: 22px; position: relative; color: var(--ink-2); font-size: 16.5px;
+    max-width: 64ch;
   }
   .who li::before {
-    content: ""; position: absolute; left: 0; top: 11px;
-    width: 8px; height: 1px; background: var(--accent);
+    content: ""; position: absolute; left: 0; top: 12px;
+    width: 10px; height: 1px; background: var(--brass);
   }
   .who li b { color: var(--ink); font-weight: 600; }
-  .stack { margin-top: 18px; }
+  .stack { margin-top: 22px; }
 
-  /* ---------- rates ---------- */
+  /* ---------- rates: a ledger ---------- */
   .rates {
     width: 100%; border-collapse: collapse;
-    border-top: 1px solid var(--line); margin: 0;
+    border-top: 1px solid var(--ink); margin: 0;
   }
   .rates th, .rates td {
-    text-align: left; padding: 15px 0; vertical-align: baseline;
+    text-align: left; padding: 20px 0; vertical-align: baseline;
     border-bottom: 1px solid var(--line-soft);
   }
   .rates th {
-    font-family: var(--f-head); font-weight: 600; font-size: 17px;
-    color: var(--ink); letter-spacing: -0.005em; white-space: nowrap; width: 124px;
+    font-family: var(--f-head); font-weight: 600; font-size: 18px;
+    color: var(--ink); letter-spacing: -0.008em; white-space: nowrap;
+    width: 150px; padding-left: 16px;
   }
+  .rates .what { color: var(--ink-2); font-size: 16.5px; padding-right: 26px; }
   .rates .fee {
-    font-family: var(--f-head); font-weight: 600; font-size: 17px;
-    color: var(--accent); white-space: nowrap; width: 82px; padding-right: 20px;
+    font-family: var(--f-head); font-weight: 600; font-size: 23px;
+    color: var(--ink); white-space: nowrap; width: 110px;
+    text-align: right; letter-spacing: -0.02em;
     font-variant-numeric: lining-nums tabular-nums;
+    padding-right: 16px;
   }
-  .rates .what { color: var(--ink-2); font-size: 16.5px; }
+  /* The main offer, weighted rather than badged. */
+  .rates tr.lead th { box-shadow: inset 2px 0 0 var(--brass); }
+  .rates tr.lead th, .rates tr.lead td { background: var(--surface); }
+  .rates tr.lead .fee { color: var(--accent); }
 
   /* ---------- start ---------- */
-  .start { background: var(--accent-bg); border: 1px solid var(--line); padding: 28px 28px 26px; }
-  .start h2 { margin-bottom: 12px; }
+  .start {
+    background: var(--accent-bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 34px 34px 32px;
+  }
+  .start h2 { margin-bottom: 6px; }
   .start .price {
-    font-family: var(--f-head); font-size: 27px; font-weight: 600;
-    color: var(--ink); letter-spacing: -0.02em; margin: 0 0 12px;
+    font-family: var(--f-head); font-size: clamp(28px, 4vw, 38px); font-weight: 600;
+    color: var(--ink); letter-spacing: -0.026em; margin: 0 0 18px; line-height: 1.15;
     font-variant-numeric: lining-nums tabular-nums;
   }
-  .start p { color: var(--ink-2); font-size: 16.5px; }
+  .start p { color: var(--ink-2); font-size: 16.5px; max-width: 58ch; }
 
   a.mail {
-    display: inline-block; margin-top: 18px;
-    font-family: var(--f-head); font-size: 18px; font-weight: 500;
+    display: inline-block; margin-top: 24px;
+    font-family: var(--f-head); font-size: 19px; font-weight: 600;
     color: var(--accent); text-decoration: none;
-    border-bottom: 1px solid var(--accent-2); padding-bottom: 2px;
+    border-bottom: 2px solid var(--accent-2); padding-bottom: 3px;
     transition: color 160ms cubic-bezier(.16,1,.3,1), border-color 160ms cubic-bezier(.16,1,.3,1);
   }
   a.mail:hover { color: var(--ink); border-bottom-color: var(--ink); }
   a.mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 
   footer {
-    padding: 34px 0 46px; margin-top: 40px; border-top: 1px solid var(--line);
-    font-size: 13.5px; color: var(--muted);
+    padding: 30px 0 48px; border-top: 2px solid var(--ink);
+    font-size: 12.5px; color: var(--muted);
+    letter-spacing: 0.05em;
     display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: space-between;
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 660px) {
     body { font-size: 16.5px; }
-    .hero { padding-top: 48px; }
+    .wrap { padding: 0 20px; }
+    .hero { padding: 52px 0 48px; }
+    h1 { max-width: 100%; }
+    section { padding: 40px 0; }
+    .spine { padding: 46px 0 48px; }
     .does { grid-template-columns: 1fr; }
     .does dt { padding-bottom: 0; border-bottom: 0; }
     .does dd { padding-left: 0; padding-top: 3px; }
     .rates, .rates tbody, .rates tr, .rates th, .rates td { display: block; width: auto; }
-    .rates tr { padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
-    .rates th, .rates td { padding: 0; border-bottom: 0; }
-    .rates .fee { padding: 2px 0 5px; }
-    .guarantee, .start { padding: 22px 20px; }
+    .rates tr {
+      padding: 16px 0 16px 14px; border-bottom: 1px solid var(--line-soft);
+      position: relative;
+    }
+    .rates th, .rates td { padding: 0; border-bottom: 0; background: none; }
+    .rates th { box-shadow: none; padding-left: 0; }
+    .rates tr.lead { box-shadow: inset 2px 0 0 var(--brass); background: var(--surface); }
+    .rates .fee { text-align: left; padding: 3px 0 6px; font-size: 21px; }
+    .rates .what { padding-right: 0; }
+    .start { padding: 26px 22px 24px; }
   }
 
-  /* One authored moment: the page settles. Base state is visible, so if the
-     animation never runs nothing is hidden. */
+  /* One authored moment: the page settles. Base state is visible, so if
+     the animation never runs nothing is hidden. */
   @media (prefers-reduced-motion: no-preference) {
     header.top, .hero h1, .hero .lede {
       animation: settle 520ms cubic-bezier(.16, 1, .3, 1) backwards;
@@ -262,8 +340,11 @@
     <p class="lede">Most independent consultants are doing a few hours a week of work they'd never put on a client invoice. <strong>That's the work I take.</strong></p>
   </div>
 
-  <section>
-    <h2>What that covers</h2>
+</div>
+
+<section class="scope">
+  <div class="wrap">
+    <p class="label">What that covers</p>
     <dl class="does">
       <dt>Your inbox</dt>
       <dd>Sorted through the day. Replies drafted and waiting for a yes.</dd>
@@ -278,51 +359,58 @@
       <dd>Who you're meeting, what they do, what's changed. One page, sourced, the day before.</dd>
     </dl>
     <p class="also">Scheduling too, whenever you want it. Four things, done properly, and nothing else.</p>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="guarantee">
-      <h2>Nothing goes out in your name without you approving it.</h2>
-      <p>Replies are drafted, never sent. Calendar invitations go only when you press the button. That isn't a promise about how I work — it's built into the software I use, and an automated test fails if anyone ever changes it.</p>
-      <p>Drafts appear in your own Drafts folder as mail arrives, so you may see one before I have. My review improves them; you decide what gets sent.</p>
-    </div>
-  </section>
+<section class="spine">
+  <div class="wrap">
+    <p class="label">The guarantee</p>
+    <h2>Nothing goes out in your name without you approving it.</h2>
+    <p>Replies are drafted, never sent. Calendar invitations go only when you press the button. That isn't a promise about how I work — it's built into the software I use, and an automated test fails if anyone ever changes it.</p>
+    <p>Drafts appear in your own Drafts folder as mail arrives, so you may see one before I have. My review improves them; you decide what gets sent.</p>
+  </div>
+</section>
 
-  <section>
-    <h2>Who this is for</h2>
+<section>
+  <div class="wrap">
+    <p class="label">Who this is for</p>
     <ul class="who">
       <li><b>Fractional CFOs and CTOs</b> — three or four client companies colliding in one inbox.</li>
       <li><b>Independent consultants</b> — billing by the hour, losing evenings to expenses.</li>
       <li><b>Firms of two to fifteen</b> — where the principal is also the operations department.</li>
     </ul>
-    <p class="stack">Mostly Microsoft 365. Google Workspace is fine too.</p>
-  </section>
+    <p class="stack also">Mostly Microsoft 365. Google Workspace is fine too.</p>
+  </div>
+</section>
 
-  <section>
-    <h2>What it costs</h2>
+<section>
+  <div class="wrap">
+    <p class="label">What it costs</p>
     <table class="rates">
       <tbody>
         <tr>
           <th scope="row">Inbox</th>
-          <td class="fee">£450</td>
           <td class="what">One mailbox, sorted through the day, with replies drafted and waiting.</td>
+          <td class="fee">£450</td>
         </tr>
-        <tr>
+        <tr class="lead">
           <th scope="row">Back Office</th>
-          <td class="fee">£950</td>
           <td class="what">Everything above, plus the write-ups, the receipts and the prep.</td>
+          <td class="fee">£950</td>
         </tr>
         <tr>
           <th scope="row">The Firm</th>
-          <td class="fee">£1,800</td>
           <td class="what">Back Office for up to three people in the same practice.</td>
+          <td class="fee">£1,800</td>
         </tr>
       </tbody>
     </table>
     <p class="also">A month at a time. No setup fee, no minimum term, and no notice beyond the month you're in.</p>
-  </section>
+  </div>
+</section>
 
-  <section>
+<section>
+  <div class="wrap">
     <div class="start">
       <h2>Starting</h2>
       <p class="price">The first month is £450</p>
@@ -330,13 +418,14 @@
       <p>Week one will be rough — tell me what's wrong and it gets fixed. By week three you should have stopped noticing it. At the end you'll know what it actually gave you back, and you carry on or you don't.</p>
       <a class="mail" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
     </div>
-  </section>
+  </div>
+</section>
 
+<div class="wrap">
   <footer>
     <span>Swan Campbell — Harrison Swan-Campbell</span>
     <span>swancampbell.co.uk</span>
   </footer>
-
 </div>
 
 </body>
