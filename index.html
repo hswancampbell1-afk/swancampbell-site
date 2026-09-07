@@ -227,6 +227,24 @@
   .who li b { color: var(--ink); font-weight: 600; }
   .stack { margin-top: 22px; }
 
+  /* ---------- the sum: their numbers, not mine ---------- */
+  .sum {
+    display: grid; grid-template-columns: 1fr auto;
+    max-width: 340px; margin: 26px 0 0;
+    border-top: 1px solid var(--ink);
+  }
+  .sum dt, .sum dd {
+    margin: 0; padding: 12px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .sum dt { color: var(--ink-2); font-size: 16px; padding-right: 32px; }
+  .sum dd {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--ink); text-align: right;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .sum .rule { border-bottom-color: var(--brass); }
+  .sum dd.total { color: var(--accent); font-size: 20px; }
+
   /* ---------- rates: a ledger ---------- */
   .rates {
     width: 100%; border-collapse: collapse;
@@ -380,6 +398,23 @@
       <li><b>Firms of two to fifteen</b> — where the principal is also the operations department.</li>
     </ul>
     <p class="stack also">Mostly Microsoft 365. Google Workspace is fine too.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">The arithmetic</p>
+    <h2>What the admin already costs you</h2>
+    <p>You know your own hourly rate. Take the hours a week you lose to the inbox, the write-ups and the receipts, and multiply them out. That is the figure worth weighing the fee against &mdash; not what an assistant costs, but what the hours cost.</p>
+    <dl class="sum">
+      <dt>Your rate, say</dt>
+      <dd>&pound;150/hr</dd>
+      <dt class="rule">Hours a week</dt>
+      <dd class="rule">2</dd>
+      <dt>Over a month</dt>
+      <dd class="total">&pound;1,300</dd>
+    </dl>
+    <p class="also">Both of those are your numbers, not mine. And I'm not going to tell you how many hours you'll get back &mdash; I don't know yet, and anyone quoting you a figure before they've seen your inbox is guessing.</p>
   </div>
 </section>
 
