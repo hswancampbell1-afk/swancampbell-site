@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Swan Campbell</title>
+<meta name="description" content="What Swan Campbell does with personal data: no tracking on this site, and a plain account of how client mail is handled, who else sees it, and how long it is kept.">
+<link rel="canonical" href="https://swancampbell.co.uk/privacy">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="robots" content="index,follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* ------------------------------------------------------------------
+     The same letterhead as the front page, set for reading rather than
+     for persuading. A privacy notice is a document somebody consults, so
+     it gets a narrower measure, numbered clauses that can be cited in an
+     email, and no ornament at all.
+
+     It says what the client agreement already says, in the same words
+     where possible. A notice that promises something different from the
+     contract is worse than no notice: one of the two is then untrue, and
+     nobody finds out which until it matters.
+     ------------------------------------------------------------------ */
+  :root {
+    color-scheme: light dark;
+    --ink: #14171A; --ink-2: #454B51; --muted: #757B81;
+    --paper: #FBFAF8; --surface: #FFFFFF;
+    --line: #D6D3CC; --line-soft: #E7E4DD;
+    --accent: #1F3D4C; --accent-bg: #EAEFF2; --brass: #8C7141;
+    --f-head: "Literata", Georgia, "Times New Roman", serif;
+    --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #ECEDEB; --ink-2: #B5B9BC; --muted: #888E92;
+      --paper: #131517; --surface: #1B1E21;
+      --line: #2E3236; --line-soft: #24282B;
+      --accent: #9FC2D4; --accent-bg: #1C2429; --brass: #C9A96A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--f-body); font-size: 17px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+  a { color: var(--accent); }
+
+  header.masthead {
+    border-bottom: 1px solid var(--line);
+    padding: 22px 0 18px; margin-bottom: 44px;
+  }
+  .masthead .wrap { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .brand { font-family: var(--f-head); font-weight: 600; font-size: 1.05rem; letter-spacing: .01em; text-decoration: none; color: var(--ink); }
+  .masthead a.back { font-size: .88rem; color: var(--muted); text-decoration: none; }
+  .masthead a.back:hover { color: var(--ink); }
+
+  h1 { font-family: var(--f-head); font-size: 2rem; font-weight: 600; line-height: 1.2; margin: 0 0 .3rem; letter-spacing: -.01em; }
+  .dateline { color: var(--muted); font-size: .9rem; margin: 0 0 2.4rem; }
+
+  h2 {
+    font-family: var(--f-head); font-size: 1.12rem; font-weight: 600;
+    margin: 2.6rem 0 .7rem; padding-top: .9rem; border-top: 1px solid var(--line-soft);
+  }
+  h2 .n { color: var(--brass); font-variant-numeric: tabular-nums; margin-right: .5rem; }
+  p { margin: 0 0 1rem; }
+  ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  li { margin-bottom: .45rem; }
+  strong { font-weight: 600; }
+
+  .lede {
+    font-size: 1.08rem; color: var(--ink-2);
+    border-left: 3px solid var(--brass); padding-left: 1rem; margin-bottom: 2rem;
+  }
+  .note {
+    background: var(--accent-bg); border: 1px solid var(--line-soft);
+    padding: 1rem 1.15rem; margin: 1.4rem 0; font-size: .95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+
+  dl { margin: 0 0 1rem; }
+  dt { font-weight: 600; margin-top: .9rem; }
+  dd { margin: .15rem 0 0; color: var(--ink-2); }
+
+  footer {
+    margin-top: 4rem; border-top: 1px solid var(--line);
+    padding: 20px 0 44px; color: var(--muted); font-size: .88rem;
+  }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="/">Swan Campbell</a>
+    <a class="back" href="/">&larr; Back to the main page</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <h1>Privacy</h1>
+  <p class="dateline">Harrison Swan-Campbell, trading as Swan Campbell &middot; Last updated 8 September 2026</p>
+
+  <p class="lede">Two different things happen here, and they deserve separate answers. Visiting
+    this website collects nothing at all. Becoming a client means I handle your business
+    mail, and that is governed by a written agreement you sign before anything is
+    connected. Both are set out below.</p>
+
+  <h2><span class="n">1</span>This website collects nothing</h2>
+  <p>No analytics. No tracking pixels. No advertising tags. No third-party scripts of any
+    kind. <strong>No cookies</strong> &mdash; which is why there is no cookie banner asking
+    you to accept some.</p>
+  <p>There is no contact form. The only way to reach me from this page is an email address,
+    and following it opens your own mail programme. Nothing is submitted to me until you
+    choose to send it.</p>
+  <p>The page loads two typefaces from Google Fonts, which means Google receives your IP
+    address in order to serve them. That is the single third party involved in viewing this
+    site, and it is mentioned because a privacy notice that says &ldquo;nothing at all&rdquo;
+    while quietly making a request to another company is not being straight with you.</p>
+
+  <h2><span class="n">2</span>If you email me</h2>
+  <p>I hold what you send: your name, your email address, and whatever you write. I use it
+    to reply and, if we go on to work together, to set you up. The lawful basis is my
+    legitimate interest in answering people who contact me about my services, and, once we
+    are talking about an agreement, taking steps at your request before entering into one.</p>
+  <p>Enquiries that do not become clients are deleted within twelve months. I do not add
+    you to a mailing list, and I do not have one.</p>
+
+  <h2><span class="n">3</span>If you become a client</h2>
+  <p>Here <strong>you are the controller and I am the processor</strong>. In plain terms:
+    it stays your data, I only do what you have instructed, and your instructions are the
+    written agreement you sign. This section summarises clause 8 of that agreement, which
+    is the document that actually governs it.</p>
+
+  <dl>
+    <dt>What I handle</dt>
+    <dd>The content and metadata of your business email, your calendar entries, and the
+      invoices and receipts you give me.</dd>
+    <dt>Whose data that includes</dt>
+    <dd>You, your staff, your clients, and anyone who corresponds with you.</dd>
+    <dt>What I do with it</dt>
+    <dd>Sort your mail, draft replies for you to approve, write up meetings, record
+      receipts, and prepare briefs for meetings you are about to have.</dd>
+    <dt>How long</dt>
+    <dd>For the term of the agreement. Within 30 days of it ending I return anything of
+      yours I hold in a usable format and delete my copies.</dd>
+  </dl>
+
+  <h2><span class="n">4</span>Who else sees it</h2>
+  <p>Three others, and no more without telling you first:</p>
+  <ul>
+    <li><strong>Anthropic PBC</strong> (Claude API, United States) classifies mail and
+      drafts text. Your data is not used to train their models. Because this involves
+      sending data outside the UK, that transfer is covered by a data processing agreement
+      incorporating the UK international data transfer addendum.</li>
+    <li><strong>Microsoft or Google</strong> &mdash; whoever already runs your mail. They
+      continue to hold it exactly as they did before; I connect to your existing account
+      rather than moving anything.</li>
+    <li><strong>ntfy</strong> sends me a push notification when something in your inbox
+      looks urgent. That alert carries your firm&rsquo;s name and a count of messages
+      &mdash; never a subject line, a sender, or any part of the correspondence. It tells
+      me to look; it does not tell me what at.</li>
+  </ul>
+  <p>I will tell you in writing at least 14 days before adding any other, and you may
+    object. Nobody else has access to your data: I do not engage a substitute, and there
+    is no team.</p>
+
+  <div class="note">
+    <p><strong>Meeting briefs search the open web.</strong> What leaves is the name of the
+      company or person I am briefing you on &mdash; never your mail, your calendar or
+      your documents. If there is anyone you would rather I did not look up, tell me and I
+      will not, for a single meeting or as a standing instruction.</p>
+  </div>
+
+  <h2><span class="n">5</span>How it is kept</h2>
+  <ul>
+    <li>Credentials are encrypted at rest, and the machine they sit on is encrypted.</li>
+    <li>The access you grant is limited to reading and drafting. On Microsoft 365 the
+      permission does not include sending at all.</li>
+    <li>Anything the system is unsure of is held for me to look at rather than acted on.</li>
+    <li>Bank details, card numbers and similar are masked on my screen when I review your
+      mail. I do not need to see them to do this work, so I do not.</li>
+    <li>You can withdraw my access at any time from your own account settings, without
+      asking me. It takes effect immediately and my stored credentials for you are deleted.</li>
+  </ul>
+  <p>If there is ever a personal data breach affecting your data, I will tell you without
+    undue delay and within 48 hours.</p>
+
+  <h2><span class="n">6</span>Your rights</h2>
+  <p>Under UK data protection law you can ask for a copy of the personal data I hold about
+    you, ask me to correct it, ask me to delete it, object to how I am using it, or ask me
+    to restrict it. Ask me and I will answer within one month.</p>
+  <p>Where I am acting as a processor for a client &mdash; that is, if you are one of their
+    customers or correspondents rather than my client &mdash; the right way round is to
+    ask them, and I will help them answer you.</p>
+  <p>If you think I have got something wrong, please tell me first so I can put it right.
+    You also have the right to complain to the Information Commissioner&rsquo;s Office at
+    <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">ico.org.uk</a>, or by
+    calling 0303 123 1113.</p>
+
+  <h2><span class="n">7</span>Contact</h2>
+  <p>Harrison Swan-Campbell, trading as Swan Campbell.<br>
+    <a href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a></p>
+  <p><!-- TO FILL BEFORE THE FIRST CLIENT: the same address as the agreement, and the
+       ICO registration number once registered. Both are deliberately left visible as
+       gaps rather than quietly omitted - a notice with no address is a notice somebody
+       cannot serve anything on, and it should look unfinished until it is. -->
+    Registered address: [ADDRESS]<br>
+    ICO registration: [NUMBER]</p>
+
+  <h2><span class="n">8</span>Changes</h2>
+  <p>If this notice changes I will update the date at the top. If a change materially
+    affects clients, I will tell them directly rather than relying on them re-reading
+    this page.</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Swan Campbell &middot; Harrison Swan-Campbell</span>
+    <span><a href="/">swancampbell.co.uk</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
