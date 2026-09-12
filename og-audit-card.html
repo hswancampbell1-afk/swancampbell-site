@@ -39,7 +39,7 @@
   }
   .mark { font-family: var(--f-head); font-weight: 700; font-size: 34px; letter-spacing: 0.01em; }
   .where {
-    font-size: 17px; font-weight: 600; color: var(--muted);
+    font-size: 18px; font-weight: 600; color: var(--muted);
     letter-spacing: 0.16em; text-transform: uppercase;
   }
 
@@ -66,18 +66,20 @@
     gap: 28px; padding: 15px 0; border-bottom: 1px solid var(--line-soft);
   }
   .sum .row.rule { border-bottom-color: var(--brass); border-bottom-width: 2px; }
-  .sum .k { font-size: 18px; color: var(--ink-2); }
+  .sum .k { font-size: 21px; color: var(--ink-2); }
   .sum .v {
-    font-family: var(--f-head); font-weight: 600; font-size: 22px;
+    font-family: var(--f-head); font-weight: 600; font-size: 24px;
     font-variant-numeric: lining-nums tabular-nums; white-space: nowrap;
   }
   .sum .row.total .v { font-size: 34px; color: var(--accent); letter-spacing: -0.02em; }
-  .sum .cap { margin-top: 14px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+  /* The best line on the card, and it was the smallest. 19px is the
+     floor at which it survives a 360px mobile feed. */
+  .sum .cap { margin-top: 15px; font-size: 19px; color: var(--ink-2); line-height: 1.45; }
 
   footer {
     display: flex; align-items: baseline; justify-content: space-between;
     padding-top: 20px; border-top: 1px solid var(--line);
-    font-size: 17px; color: var(--muted); letter-spacing: 0.04em;
+    font-size: 19px; color: var(--muted); letter-spacing: 0.04em;
   }
   footer .url { color: var(--accent); font-weight: 600; }
 </style>
@@ -108,7 +110,7 @@
         <span class="k">The difference</span>
         <span class="v">£1,300</span>
       </div>
-      <p class="cap">Your numbers, not mine. It will also tell you when the answer is no.</p>
+      <p class="cap">Your numbers, not mine. It will also say when the answer is no.</p>
     </div>
   </main>
 
