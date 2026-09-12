@@ -28,6 +28,28 @@ Google as "manage drafts and send emails", so on Google the permission would
 allow sending and only the software prevents it. The page says so. The
 admission is why the Microsoft half is worth believing.
 
+A fourth joined them on 12 September 2026, and it lives in that same other
+repository. The pricing section says a pooled `+` tier gives you one shared
+allowance across three mailboxes, so "a heavy mailbox draws on a quiet one's
+headroom" — and `/audit` prices three mailboxes at three times the hours on
+the strength of it. That is true because `plan_ceilings()` in the control
+panel multiplies `PLANS` by `POOLED_MAILBOXES` for the two `+` tiers. It was
+not true the day before: the pooled tiers shared one mailbox's ceiling
+between three, which made Inbox+ strictly worse than buying three Inboxes at
+the same price, and this page would have been selling a benefit that did not
+exist. Reading ceilings off `PLANS` directly again — the obvious-looking
+simplification, since that is where the numbers are — puts it back, and
+nothing here would say so. Two tests in that repository hold the line:
+`test_a_pooled_tier_is_never_worse_than_buying_the_solo_tier_three_times`
+and `test_a_solo_tier_is_not_quietly_pooled`.
+
+The pattern is now worth naming, since it has happened twice. Every claim on
+this site that a prospect would find persuasive is a claim about software in
+`vatools`, and neither repository's tests know about the other. The claims
+survive because they are written down here next to the line of code that
+makes them true, and because someone re-reads this file before changing
+either.
+
 ## The share cards
 
 `og-home.png` and `og-audit.png` are what LinkedIn, Slack and X render when
