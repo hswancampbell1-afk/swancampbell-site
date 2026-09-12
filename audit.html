@@ -261,12 +261,25 @@
     color: var(--ink-2); text-align: right; white-space: nowrap;
     font-variant-numeric: lining-nums tabular-nums;
   }
+  /* Whose hours these are, under the figure itself. Carrying it here
+     rather than only in the caption is the difference between a reader
+     understanding the table and assuming it is inconsistent. */
+  .fig .each {
+    display: block; margin-top: 3px;
+    font-family: var(--f-body); font-size: 12.5px; font-weight: 500;
+    letter-spacing: 0.01em; color: var(--muted); white-space: nowrap;
+  }
   .fig.fee { color: var(--ink); }
   .fig.net { font-size: 19px; }
 
   .tier.on { background: var(--surface); box-shadow: inset 3px 0 0 var(--brass); }
   .tier.on .t-name { color: var(--ink); }
   .tier.on .fig.net { color: var(--accent); }
+
+  /* A second ruled heading inside one section: the chooser and the
+     reading it drives are two steps, and one label over both read as
+     though the table were the reading. */
+  .label-2 { margin-top: 38px; }
 
   /* ---------- the reading ---------- */
   .reading {
@@ -409,6 +422,7 @@
     <p class="label">Your week</p>
     <h2>Your numbers, not mine.</h2>
     <p>Estimate rather than guess — look at last week if you can. A figure you half-believe is worse than no figure.</p>
+    <p><b>Answer for one person: you.</b> If there are others in the practice, say how many at the last question and I'll take your week as typical of theirs. Every hours figure on this page is one person's unless it says otherwise.</p>
 
     <div class="q" id="q">
       <div class="q-row">
@@ -418,26 +432,26 @@
         <input id="rate" type="number" min="0" step="5" value="150" inputmode="decimal">
       </div>
       <div class="q-row">
-        <label for="inbox">Hours a week in the inbox
+        <label for="inbox">Hours a week <i>you</i> spend in the inbox
           <span class="hint">Reading, sorting, and writing replies you'd never invoice for.</span>
         </label>
         <input id="inbox" type="number" min="0" step="0.5" value="2" inputmode="decimal">
       </div>
       <div class="q-row">
-        <label for="notes">Hours a week writing up meetings
+        <label for="notes">Hours a week <i>you</i> spend writing up meetings
           <span class="hint">Notes, actions, and the follow-up email you send afterwards.</span>
         </label>
         <input id="notes" type="number" min="0" step="0.5" value="1" inputmode="decimal">
       </div>
       <div class="q-row">
-        <label for="receipts">Hours a month on receipts and expenses
+        <label for="receipts">Hours a month <i>you</i> spend on receipts and expenses
           <span class="hint">Including the part where you go looking for the missing one.</span>
         </label>
         <input id="receipts" type="number" min="0" step="0.5" value="2" inputmode="decimal">
       </div>
       <div class="q-row">
-        <label for="people">People in the practice whose admin this is
-          <span class="hint">Just you, or you and whoever else is drowning. Above one, the hours above are read as typical for each of them.</span>
+        <label for="people">People with a week like yours
+          <span class="hint">Just you, or you and whoever else is drowning. Your answers are taken as typical for each of them, and only The Firm covers more than one mailbox.</span>
         </label>
         <input id="people" type="number" min="1" step="1" value="1" inputmode="numeric">
       </div>
@@ -455,7 +469,7 @@
 
 <section>
   <div class="wrap">
-    <p class="label">The reading</p>
+    <p class="label">Which one</p>
     <h2>Which of them you're pricing.</h2>
     <p>Inbox takes the inbox. Back Office takes the write-ups and the receipts as well &mdash; so it carries more of your week, and costs more. Both are here so you can see the gap rather than take my word for which one you want.</p>
 
@@ -500,8 +514,9 @@
         <span class="fig net" data-l="Difference" id="f-firm-net">&mdash;</span>
       </label>
     </div>
-    <p class="also"><b>Hours</b> is what that one takes off you a month, from your own answers &mdash; Inbox is credited with the inbox hours only, because that is all it touches. <b>Difference</b> is what those hours cost you at your rate, less the fee.</p>
+    <p class="also">Every figure here is a month &mdash; your weekly answers multiplied out at 4.3 weeks, so two hours a week shows as 8.7. <b>Hours</b> is what that one would take off you; Inbox is credited with the inbox hours alone, because the inbox is all it touches, and the small line beneath each figure says whose hours they are. <b>Difference</b> is what those hours cost at your rate, less the fee.</p>
 
+    <p class="label label-2">The reading</p>
     <div class="reading">
       <h2 id="out-head">What that week already costs you</h2>
       <dl class="sum">
@@ -512,6 +527,7 @@
         <dt>The difference</dt>
         <dd class="total" id="out-diff">£350</dd>
       </dl>
+      <p class="also" id="out-scope"></p>
       <p class="verdict" id="out-verdict"></p>
       <p class="also" id="out-provider"></p>
       <p class="also">I'm not going to tell you how many of those hours actually come back. I don't know yet, and anyone who quotes you a figure before they've seen your inbox is guessing.</p>
@@ -564,7 +580,7 @@
 <section>
   <div class="wrap">
     <div class="start">
-      <h2>If the number was bigger than you expected</h2>
+      <h2>If the number surprised you</h2>
       <p>Send it to me. The link below opens your own mail client with your six answers already in it — nothing has left this page until you press it, and you can delete any line you'd rather not share.</p>
       <p>What happens next is a twenty-minute call about your actual inbox, not a pitch. If it isn't worth doing I'll say so on the call rather than after your first invoice.</p>
       <a class="mail" id="send" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
@@ -588,9 +604,9 @@
   var WEEKS = 13 / 3;
 
   var TIERS = {
-    inbox:  { name: "Inbox",       fee: 450  },
-    office: { name: "Back Office", fee: 950  },
-    firm:   { name: "The Firm",    fee: 2300 }
+    inbox:  { name: "Inbox",       fee: 450,  covers: 1 },
+    office: { name: "Back Office", fee: 950,  covers: 1 },
+    firm:   { name: "The Firm",    fee: 2300, covers: 3 }
   };
   var ORDER = ["inbox", "office", "firm"];
 
@@ -610,6 +626,7 @@
     tier:     document.getElementById("out-tier-label"),
     fee:      document.getElementById("out-fee"),
     diff:     document.getElementById("out-diff"),
+    scope:    document.getElementById("out-scope"),
     verdict:  document.getElementById("out-verdict"),
     provider: document.getElementById("out-provider"),
     send:     document.getElementById("send")
@@ -648,6 +665,10 @@
     return (Math.round(h * 10) / 10) + "h";
   }
 
+  function plural(n, one, many) {
+    return n === 1 ? one : many;
+  }
+
   function answers() {
     return {
       rate:     num(f.rate, 0),
@@ -659,21 +680,57 @@
     };
   }
 
-  // What each tier actually takes off you in a month. Inbox is credited
-  // with the inbox hours and nothing else, because the inbox is all it
-  // touches — crediting it with write-ups it does not do would make the
+  // One person's month, from answers given for one person. Inbox is
+  // credited with the inbox hours alone, because the inbox is all it
+  // touches - crediting it with write-ups it does not do would make the
   // cheap option look better than it is.
-  function hoursFor(key, a) {
+  function hoursEach(key, a) {
     var weekly  = a.inbox + (key === "inbox" ? 0 : a.notes);
     var monthly = (key === "inbox" ? 0 : a.receipts);
-    var each    = weekly * WEEKS + monthly;
-    return key === "firm" ? each * a.people : each;
+    return weekly * WEEKS + monthly;
+  }
+
+  // How many of those people a tier actually covers. Inbox and Back
+  // Office are one mailbox however many people are drowning; only The
+  // Firm scales, and only to three.
+  function headsCovered(key, a) {
+    return Math.min(a.people, TIERS[key].covers);
+  }
+
+  function hoursFor(key, a) {
+    return hoursEach(key, a) * headsCovered(key, a);
   }
 
   function suggest(a) {
     if (a.people >= 2) return "firm";
     if (a.notes > 0 || a.receipts > 0) return "office";
     return "inbox";
+  }
+
+  // The line under each Hours figure saying whose hours they are. Shown
+  // only when there is more than one person, because with one person
+  // every figure on the page is already yours and the note would be noise.
+  function scopeUnder(key, a) {
+    if (a.people < 2) return "";
+    var heads = headsCovered(key, a);
+    if (heads === 1) return "one person's";
+    return hoursText(hoursEach(key, a)) + " each, " + heads + " people";
+  }
+
+  function scopeNote(key, a) {
+    if (a.people < 2) return "";
+    var t = TIERS[key];
+    var each = hoursText(hoursEach(key, a));
+
+    if (key === "firm") {
+      var heads = headsCovered(key, a);
+      return "Those are the practice's hours — " + each + " each, across " + heads +
+             plural(heads, " person", " people") +
+             (a.people > 3 ? " (The Firm covers three; you said " + a.people + ")" : "") +
+             ". Inbox and Back Office cover one mailbox, so their hours are one person's.";
+    }
+    return "Those are one person's hours — " + t.name + " covers one mailbox, whoever else is drowning. " +
+           "The Firm is the one that covers " + Math.min(a.people, 3) + " of you, at " + each + " each.";
   }
 
   function verdict(key, a, hours, cost) {
@@ -685,15 +742,16 @@
              "With nothing in it, it can't.";
     }
 
+    var whose = (headsCovered(key, a) > 1) ? " off the practice" : " off you";
     var lead;
     if (diff > 0) {
       lead = "On your own numbers, the " + hoursText(hours) + " a month <b>" + t.name +
-             "</b> would take off you costs you <b>" + money(diff) + " a month more than the fee</b> " +
+             "</b> would take" + whose + " costs you <b>" + money(diff) + " a month more than the fee</b> " +
              "— and that is before the part nobody prices, which is doing it at nine in the evening. " +
              "How much of it actually comes back is the thing to find out, not to assume.";
     } else {
       lead = "On your own numbers, <b>" + t.name + "</b> costs <b>" + money(Math.abs(diff)) +
-             " a month more than the " + hoursText(hours) + " it would take off you</b>. " +
+             " a month more than the " + hoursText(hours) + " it would take" + whose + "</b>. " +
              "That's a real answer and it points at no — for this one, at least. " +
              "I'd rather you worked that out here than three invoices in.";
     }
@@ -730,25 +788,31 @@
 
   function body(key, a, hours, cost) {
     var t = TIERS[key];
+    var heads = headsCovered(key, a);
     var L = [
-      "Numbers from the audit page:",
+      "Numbers from the audit page. The hours are one person's — mine:",
       "",
       "Hourly rate:              £" + a.rate,
       "Inbox, hours a week:      " + a.inbox,
       "Write-ups, hours a week:  " + a.notes,
       "Receipts, hours a month:  " + a.receipts,
-      "People in the practice:   " + a.people,
+      "People with a week like it: " + a.people,
       "Mail runs on:             " + (a.provider === "ms" ? "Microsoft 365"
                                     : a.provider === "google" ? "Google Workspace" : "Something else"),
       "",
       "I'm looking at " + t.name + ", at " + money(t.fee) + " a month.",
-      "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + ".",
+      (heads > 1
+        ? "That covers " + heads + " of us at " + hoursText(hoursEach(key, a)) + " each — " +
+          hoursText(hours) + " a month across the practice, worth " + money(cost) + "."
+        : "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + "."),
       ""
     ];
     ORDER.forEach(function (k) {
       if (k === key) { return; }
       var h = hoursFor(k, a);
-      L.push("(" + TIERS[k].name + " for comparison: " + hoursText(h) + ", worth " +
+      var hs = headsCovered(k, a);
+      L.push("(" + TIERS[k].name + " for comparison: " + hoursText(h) +
+             (hs > 1 ? " across " + hs : " for one person") + ", worth " +
              money(h * a.rate) + ", against " + money(TIERS[k].fee) + ".)");
     });
     L.push("", "What I'd want to ask about first:", "");
@@ -762,7 +826,8 @@
     ORDER.forEach(function (k) {
       var h = hoursFor(k, a);
       var r = rows[k];
-      r.hrs.textContent = hoursText(h);
+      var under = scopeUnder(k, a);
+      r.hrs.innerHTML = hoursText(h) + (under ? '<span class="each">' + under + "</span>" : "");
       r.net.textContent = signed(h * a.rate - TIERS[k].fee);
       r.el.classList.toggle("on", k === key);
       r.radio.checked = (k === key);
@@ -774,13 +839,17 @@
     var diff  = cost - t.fee;
 
     out.head.textContent = "What " + t.name + " would be worth to you";
-    out.hoursLbl.textContent = (key === "firm" && a.people > 1)
+    out.hoursLbl.textContent = (headsCovered(key, a) > 1)
       ? "The practice's hours, at your rate"
       : "The hours it takes off you, at your rate";
     out.cost.textContent = money(cost);
     out.tier.textContent = "The fee — " + t.name;
     out.fee.textContent  = money(t.fee);
     out.diff.textContent = signed(diff);
+
+    var scope = scopeNote(key, a);
+    out.scope.textContent = scope;
+    out.scope.hidden = !scope;
 
     out.verdict.innerHTML = verdict(key, a, hours, cost);
 
