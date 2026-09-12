@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The audit — Swan Campbell</title>
+<meta name="description" content="Count a week of your own admin, in your own numbers, and see what an ordinary day of the service actually produces. Nothing stored, nothing sent.">
+<link rel="canonical" href="https://swancampbell.co.uk/audit">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Swan Campbell">
+<meta property="og:title" content="The audit — Swan Campbell">
+<meta property="og:description" content="Six questions about your own week, then a number. And an ordinary Tuesday, shown in full.">
+<meta property="og:url" content="https://swancampbell.co.uk/audit">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=Public+Sans:wght@400;500;600&display=swap">
+
+<style>
+  /* ------------------------------------------------------------------
+     Same letterhead and ledger as the front page — same tokens, same
+     rules, same type. This page adds one thing: fields the reader fills
+     in themselves, set as ledger rows so entering a figure looks like
+     entering a figure, not filling in a form.
+
+     Nothing here is stored or transmitted. The arithmetic runs in the
+     browser; the only way anything leaves is the mail link at the
+     bottom, which the reader has to press.
+     ------------------------------------------------------------------ */
+  :root {
+    color-scheme: light dark;
+
+    --ink:       #14171A;
+    --ink-2:     #454B51;
+    --muted:     #757B81;
+    --paper:     #FBFAF8;
+    --surface:   #FFFFFF;
+    --line:      #D6D3CC;
+    --line-soft: #E7E4DD;
+    --accent:    #1F3D4C;
+    --accent-2:  #3A6076;
+    --accent-bg: #EAEFF2;
+    --brass:     #8C7141;
+    --select:    #DCE4E9;
+
+    --spine-bg:   #171B1E;
+    --spine-ink:  #EDEEEC;
+    --spine-ink2: #B0B6B9;
+    --spine-line: #333A3F;
+    --spine-mark: #C9A96A;
+
+    --f-head: "Literata", Georgia, "Times New Roman", serif;
+    --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink:       #ECEDEB;
+      --ink-2:     #B5B9BC;
+      --muted:     #888E92;
+      --paper:     #131517;
+      --surface:   #1B1E21;
+      --line:      #2E3236;
+      --line-soft: #24272A;
+      --accent:    #9DBACB;
+      --accent-2:  #B7CEDC;
+      --accent-bg: #1A2329;
+      --brass:     #C0A26B;
+      --select:    #2B3A44;
+
+      --spine-bg:   #242A2F;
+      --spine-ink:  #F1F2F0;
+      --spine-ink2: #BFC5C8;
+      --spine-line: #3B434A;
+      --spine-mark: #D3B478;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ink:       #ECEDEB;
+    --ink-2:     #B5B9BC;
+    --muted:     #888E92;
+    --paper:     #131517;
+    --surface:   #1B1E21;
+    --line:      #2E3236;
+    --line-soft: #24272A;
+    --accent:    #9DBACB;
+    --accent-2:  #B7CEDC;
+    --accent-bg: #1A2329;
+    --brass:     #C0A26B;
+    --select:    #2B3A44;
+
+    --spine-bg:   #242A2F;
+    --spine-ink:  #F1F2F0;
+    --spine-ink2: #BFC5C8;
+    --spine-line: #3B434A;
+    --spine-mark: #D3B478;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scrollbar-color: var(--line) transparent; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    caret-color: var(--accent);
+    accent-color: var(--accent);
+  }
+
+  ::selection { background: var(--select); color: var(--ink); }
+
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--line); border: 3px solid var(--paper); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+
+  .label {
+    font-family: var(--f-body);
+    font-size: 11.5px; font-weight: 600;
+    letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--brass);
+    margin: 0 0 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .label::after {
+    content: ""; flex: 1 1 auto; height: 1px;
+    background: var(--line); min-width: 20px;
+  }
+
+  /* ---------- masthead ---------- */
+  header.top {
+    padding: 26px 0 15px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 4px 20px;
+  }
+  .mark {
+    font-family: var(--f-head); font-weight: 700; font-size: 20px;
+    letter-spacing: 0.01em; color: var(--ink); text-decoration: none;
+  }
+  .mark:hover { color: var(--accent); }
+  .top .where {
+    font-size: 11.5px; color: var(--muted);
+    letter-spacing: 0.11em; text-transform: uppercase; font-weight: 500;
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 70px 0 62px; }
+  h1 {
+    font-family: var(--f-head); font-weight: 600;
+    font-size: clamp(32px, 5.8vw, 55px); line-height: 1.08;
+    letter-spacing: -0.028em; margin: 0; text-wrap: balance;
+    max-width: 16ch;
+  }
+  .lede {
+    font-size: clamp(18px, 2.3vw, 21px); line-height: 1.5; color: var(--ink-2);
+    margin: 28px 0 0; max-width: 46ch;
+  }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  section { padding: 52px 0; border-top: 1px solid var(--line-soft); }
+
+  h2 {
+    font-family: var(--f-head); font-weight: 600; font-size: 23px;
+    letter-spacing: -0.014em; margin: 0 0 16px; text-wrap: balance;
+  }
+  p { margin: 0 0 15px; max-width: 62ch; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 600; }
+  .also { font-size: 16px; color: var(--muted); margin: 20px 0 0; max-width: 62ch; }
+
+  /* ---------- the questions: a ledger you write into ---------- */
+  .q { border-top: 1px solid var(--ink); margin: 0 0 4px; max-width: 560px; }
+  .q-row {
+    display: grid; grid-template-columns: minmax(0,1fr) 120px;
+    align-items: baseline; gap: 0 20px;
+    border-bottom: 1px solid var(--line-soft);
+    padding: 14px 0;
+  }
+  .q-row label { color: var(--ink-2); font-size: 16.5px; }
+  .q-row .hint { display: block; color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+  .q-row input, .q-row select {
+    font-family: var(--f-head); font-weight: 600; font-size: 18px;
+    color: var(--ink); background: transparent;
+    border: 0; border-bottom: 1px solid var(--line);
+    padding: 3px 2px; width: 100%; text-align: right;
+    font-variant-numeric: lining-nums tabular-nums;
+    transition: border-color 140ms ease;
+  }
+  .q-row select { text-align: left; font-size: 16px; }
+  /* A provider name is wider than a two-digit figure; give that row room
+     rather than clipping "Microsoft 365" to "Microsoft 36". */
+  .q-row.wide { grid-template-columns: minmax(0,1fr) 186px; }
+  .q-row input:hover, .q-row select:hover { border-bottom-color: var(--muted); }
+  .q-row input:focus, .q-row select:focus {
+    outline: none; border-bottom-color: var(--accent); border-bottom-width: 2px;
+    padding-bottom: 2px;
+  }
+  .q-row input::-webkit-outer-spin-button,
+  .q-row input::-webkit-inner-spin-button { opacity: 0.35; }
+
+  /* ---------- choosing which one you're pricing ----------
+     Three ruled rows, each carrying its own figures, so the difference
+     between them is visible without having to switch. Switching changes
+     which one the reading underneath is about. */
+  .tiers { border-top: 1px solid var(--ink); margin: 26px 0 0; }
+
+  .tier-head, .tier {
+    display: grid;
+    grid-template-columns: minmax(0,1fr) 86px 86px 104px;
+    align-items: baseline; gap: 0 18px;
+    padding-left: 16px;
+  }
+  .tier-head {
+    padding-bottom: 8px; padding-top: 10px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .tier-head span:not(:first-child) { text-align: right; }
+
+  .tier {
+    padding-top: 16px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-soft);
+    cursor: pointer; position: relative;
+    transition: background 140ms ease;
+  }
+  .tier:hover { background: var(--surface); }
+  .tier input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .tier:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .t-name {
+    display: block; font-family: var(--f-head); font-weight: 600;
+    font-size: 17.5px; color: var(--ink); letter-spacing: -0.008em;
+  }
+  .t-what {
+    display: block; color: var(--muted); font-size: 14.5px;
+    line-height: 1.45; margin-top: 2px; max-width: 44ch;
+  }
+  .fig {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--ink-2); text-align: right; white-space: nowrap;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .fig.fee { color: var(--ink); }
+  .fig.net { font-size: 19px; }
+
+  .tier.on { background: var(--surface); box-shadow: inset 3px 0 0 var(--brass); }
+  .tier.on .t-name { color: var(--ink); }
+  .tier.on .fig.net { color: var(--accent); }
+
+  /* ---------- the reading ---------- */
+  .reading {
+    background: var(--accent-bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 30px 32px 28px;
+    margin-top: 6px;
+  }
+  .reading h2 { margin-bottom: 4px; }
+  .sum {
+    display: grid; grid-template-columns: 1fr auto;
+    max-width: 380px; margin: 20px 0 0;
+    border-top: 1px solid var(--ink);
+  }
+  .sum dt, .sum dd {
+    margin: 0; padding: 11px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .sum dt { color: var(--ink-2); font-size: 16px; padding-right: 32px; }
+  .sum dd {
+    font-family: var(--f-head); font-weight: 600; font-size: 17px;
+    color: var(--ink); text-align: right;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .sum .rule { border-bottom-color: var(--brass); }
+  .sum dd.total { color: var(--accent); font-size: 21px; }
+  .verdict { margin-top: 20px; color: var(--ink-2); font-size: 16.5px; max-width: 56ch; }
+  .verdict b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- an ordinary Tuesday ---------- */
+  .day { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+  .day > li {
+    display: grid; grid-template-columns: 76px minmax(0,1fr);
+    gap: 0 24px; padding: 18px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .day time {
+    font-family: var(--f-mono); font-size: 13.5px; color: var(--brass);
+    letter-spacing: 0.02em; padding-top: 4px;
+  }
+  .day .what { color: var(--ink-2); font-size: 16.5px; }
+  .day .what b { color: var(--ink); font-weight: 600; }
+  .day > li:last-child .what { color: var(--ink); }
+
+  .specimen {
+    margin: 14px 0 0; padding: 16px 18px;
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-left: 2px solid var(--line);
+    font-size: 15.5px; color: var(--ink-2); line-height: 1.6;
+  }
+  .specimen .from {
+    font-family: var(--f-mono); font-size: 12.5px; color: var(--muted);
+    letter-spacing: 0.02em; display: block; margin-bottom: 9px;
+  }
+
+  /* ---------- close ---------- */
+  .start {
+    background: var(--accent-bg);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    padding: 34px 34px 32px;
+  }
+  .start h2 { margin-bottom: 10px; }
+  .start p { color: var(--ink-2); font-size: 16.5px; max-width: 58ch; }
+
+  a.mail {
+    display: inline-block; margin-top: 24px;
+    font-family: var(--f-head); font-size: 19px; font-weight: 600;
+    color: var(--accent); text-decoration: none;
+    border-bottom: 2px solid var(--accent-2); padding-bottom: 3px;
+    transition: color 160ms cubic-bezier(.16,1,.3,1), border-color 160ms cubic-bezier(.16,1,.3,1);
+  }
+  a.mail:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  a.mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+  footer {
+    padding: 30px 0 48px; border-top: 2px solid var(--ink);
+    font-size: 12.5px; color: var(--muted);
+    letter-spacing: 0.05em;
+    display: flex; flex-wrap: wrap; gap: 6px 22px; justify-content: space-between;
+  }
+
+  @media (max-width: 660px) {
+    body { font-size: 16.5px; }
+    .wrap { padding: 0 20px; }
+    .hero { padding: 48px 0 44px; }
+    h1 { max-width: 100%; }
+    section { padding: 40px 0; }
+    .q-row { grid-template-columns: minmax(0,1fr) 96px; }
+    .q-row.wide { grid-template-columns: 1fr; gap: 6px 0; }
+    .q-row.wide select { width: 100%; }
+    .tier-head { display: none; }
+    .tier { grid-template-columns: repeat(3, 1fr); gap: 12px 14px; padding-left: 12px; }
+    .t-label { grid-column: 1 / -1; }
+    .fig { text-align: left; }
+    .fig::before {
+      content: attr(data-l); display: block;
+      font-family: var(--f-body); font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    }
+    .reading { padding: 24px 20px 22px; }
+    .day > li { grid-template-columns: 1fr; gap: 2px; }
+    .day time { padding-top: 0; }
+    .start { padding: 26px 22px 24px; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    header.top, .hero h1, .hero .lede {
+      animation: settle 520ms cubic-bezier(.16, 1, .3, 1) backwards;
+    }
+    .hero h1   { animation-delay: 60ms; }
+    .hero .lede { animation-delay: 130ms; }
+    @keyframes settle {
+      from { opacity: 0; transform: translateY(9px); filter: blur(4px); }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="top">
+    <a class="mark" href="/">Swan Campbell</a>
+    <span class="where">The audit</span>
+  </header>
+
+  <div class="hero">
+    <h1>Count a week of it, then decide.</h1>
+    <p class="lede">Six questions about your own week, and then a figure you can weigh the fee against. <strong>Nothing is stored and nothing is sent</strong> — the numbers stay in this browser unless you press the link at the bottom.</p>
+  </div>
+
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="label">Your week</p>
+    <h2>Your numbers, not mine.</h2>
+    <p>Estimate rather than guess — look at last week if you can. A figure you half-believe is worse than no figure.</p>
+
+    <div class="q" id="q">
+      <div class="q-row">
+        <label for="rate">What an hour of yours bills at
+          <span class="hint">Before tax. If you're salaried, take the cost of employing you.</span>
+        </label>
+        <input id="rate" type="number" min="0" step="5" value="150" inputmode="decimal">
+      </div>
+      <div class="q-row">
+        <label for="inbox">Hours a week in the inbox
+          <span class="hint">Reading, sorting, and writing replies you'd never invoice for.</span>
+        </label>
+        <input id="inbox" type="number" min="0" step="0.5" value="2" inputmode="decimal">
+      </div>
+      <div class="q-row">
+        <label for="notes">Hours a week writing up meetings
+          <span class="hint">Notes, actions, and the follow-up email you send afterwards.</span>
+        </label>
+        <input id="notes" type="number" min="0" step="0.5" value="1" inputmode="decimal">
+      </div>
+      <div class="q-row">
+        <label for="receipts">Hours a month on receipts and expenses
+          <span class="hint">Including the part where you go looking for the missing one.</span>
+        </label>
+        <input id="receipts" type="number" min="0" step="0.5" value="2" inputmode="decimal">
+      </div>
+      <div class="q-row">
+        <label for="people">People in the practice whose admin this is
+          <span class="hint">Just you, or you and whoever else is drowning. Above one, the hours above are read as typical for each of them.</span>
+        </label>
+        <input id="people" type="number" min="1" step="1" value="1" inputmode="numeric">
+      </div>
+      <div class="q-row wide">
+        <label for="provider">What your mail runs on</label>
+        <select id="provider">
+          <option value="ms" selected>Microsoft 365</option>
+          <option value="google">Google Workspace</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">The reading</p>
+    <h2>Which of them you're pricing.</h2>
+    <p>Inbox takes the inbox. Back Office takes the write-ups and the receipts as well &mdash; so it carries more of your week, and costs more. Both are here so you can see the gap rather than take my word for which one you want.</p>
+
+    <div class="tiers" role="radiogroup" aria-label="Which service to price">
+      <div class="tier-head" aria-hidden="true">
+        <span></span>
+        <span>Hours</span>
+        <span>Fee</span>
+        <span>Difference</span>
+      </div>
+
+      <label class="tier" data-tier="inbox">
+        <input type="radio" name="tier" value="inbox">
+        <span class="t-label">
+          <span class="t-name">Inbox</span>
+          <span class="t-what">One mailbox, sorted through the day, with replies drafted and waiting.</span>
+        </span>
+        <span class="fig hrs" data-l="Hours" id="f-inbox-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Fee">&pound;450</span>
+        <span class="fig net" data-l="Difference" id="f-inbox-net">&mdash;</span>
+      </label>
+
+      <label class="tier" data-tier="office">
+        <input type="radio" name="tier" value="office">
+        <span class="t-label">
+          <span class="t-name">Back Office</span>
+          <span class="t-what">Everything above, plus the write-ups, the receipts and the prep.</span>
+        </span>
+        <span class="fig hrs" data-l="Hours" id="f-office-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Fee">&pound;950</span>
+        <span class="fig net" data-l="Difference" id="f-office-net">&mdash;</span>
+      </label>
+
+      <label class="tier" data-tier="firm">
+        <input type="radio" name="tier" value="firm">
+        <span class="t-label">
+          <span class="t-name">The Firm</span>
+          <span class="t-what">Back Office for up to three people in the same practice.</span>
+        </span>
+        <span class="fig hrs" data-l="Hours" id="f-firm-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Fee">&pound;2,300</span>
+        <span class="fig net" data-l="Difference" id="f-firm-net">&mdash;</span>
+      </label>
+    </div>
+    <p class="also"><b>Hours</b> is what that one takes off you a month, from your own answers &mdash; Inbox is credited with the inbox hours only, because that is all it touches. <b>Difference</b> is what those hours cost you at your rate, less the fee.</p>
+
+    <div class="reading">
+      <h2 id="out-head">What that week already costs you</h2>
+      <dl class="sum">
+        <dt id="out-hours-label">The hours it takes off you, at your rate</dt>
+        <dd id="out-cost">£1,300</dd>
+        <dt class="rule" id="out-tier-label">The fee — Back Office</dt>
+        <dd class="rule" id="out-fee">£950</dd>
+        <dt>The difference</dt>
+        <dd class="total" id="out-diff">£350</dd>
+      </dl>
+      <p class="verdict" id="out-verdict"></p>
+      <p class="also" id="out-provider"></p>
+      <p class="also">I'm not going to tell you how many of those hours actually come back. I don't know yet, and anyone who quotes you a figure before they've seen your inbox is guessing.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">What arrives</p>
+    <h2>An ordinary Tuesday.</h2>
+    <p>The figure above is the easy half. The harder question is what actually lands, and when. This is a constructed day — not a client's, and not a good day chosen carefully — but every item on it is something the service produces, in the form it produces it.</p>
+
+    <ol class="day">
+      <li>
+        <time>07:40</time>
+        <div class="what">Overnight mail sorted before you open it. <b>Nine messages: four filed as reading, three drafted, one marked urgent, one left alone</b> because it needed you and not a draft of you.</div>
+      </li>
+      <li>
+        <time>07:41</time>
+        <div class="what">One of the three, waiting in your own Drafts folder:
+          <div class="specimen">
+            <span class="from">Re: Thursday's board pack — draft, not sent</span>
+            Hi Marion — Thursday still works. I'll have the pack with you by Wednesday lunchtime so there's a clear evening to read it. One thing worth flagging in advance: the Q3 headcount line has moved since we last spoke, and I'd rather walk you through it than have you find it on the night.
+          </div>
+        </div>
+      </li>
+      <li>
+        <time>11:30</time>
+        <div class="what">Yesterday's call written up. <b>Three decisions, five actions with an owner and a date on each, two open questions</b> nobody answered — and a follow-up email drafted underneath it, ready to go out in your name once you've read it.</div>
+      </li>
+      <li>
+        <time>14:10</time>
+        <div class="what">Two receipts landed and went straight into the spreadsheet — a £38.40 train fare and a £212.00 software renewal, both with the VAT split out. <b>A third was flagged rather than entered:</b> a photographed restaurant bill where the VAT line was unreadable. It's in the review queue with the photo attached, not guessed at.</div>
+      </li>
+      <li>
+        <time>16:45</time>
+        <div class="what">One page on tomorrow's 9am. Who the company is, who's actually on the call, what they announced last quarter, and the two things that have changed since you last met them — <b>with a source next to every claim</b>, so you can check the one that matters before you repeat it.</div>
+      </li>
+      <li>
+        <time>18:00</time>
+        <div class="what">Nothing was sent. Everything above is sitting in your drafts, waiting for you.</div>
+      </li>
+    </ol>
+
+    <p class="also">That last line is the whole arrangement. <a href="/#guarantee">The guarantee</a> explains why it isn't just a promise.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="start">
+      <h2>If the number was bigger than you expected</h2>
+      <p>Send it to me. The link below opens your own mail client with your six answers already in it — nothing has left this page until you press it, and you can delete any line you'd rather not share.</p>
+      <p>What happens next is a twenty-minute call about your actual inbox, not a pitch. If it isn't worth doing I'll say so on the call rather than after your first invoice.</p>
+      <a class="mail" id="send" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Swan Campbell — Harrison Swan-Campbell</span>
+    <span><a href="/">Home</a> · <a href="/privacy">Privacy</a> · swancampbell.co.uk</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  // The front page reckons a month as 4.333 weeks (2 hrs at £150 = £1,300).
+  // Keep the two pages agreeing; a prospect who checks will check this.
+  var WEEKS = 13 / 3;
+
+  var TIERS = {
+    inbox:  { name: "Inbox",       fee: 450  },
+    office: { name: "Back Office", fee: 950  },
+    firm:   { name: "The Firm",    fee: 2300 }
+  };
+  var ORDER = ["inbox", "office", "firm"];
+
+  var f = {
+    rate:     document.getElementById("rate"),
+    inbox:    document.getElementById("inbox"),
+    notes:    document.getElementById("notes"),
+    receipts: document.getElementById("receipts"),
+    people:   document.getElementById("people"),
+    provider: document.getElementById("provider")
+  };
+
+  var out = {
+    head:     document.getElementById("out-head"),
+    hoursLbl: document.getElementById("out-hours-label"),
+    cost:     document.getElementById("out-cost"),
+    tier:     document.getElementById("out-tier-label"),
+    fee:      document.getElementById("out-fee"),
+    diff:     document.getElementById("out-diff"),
+    verdict:  document.getElementById("out-verdict"),
+    provider: document.getElementById("out-provider"),
+    send:     document.getElementById("send")
+  };
+
+  var rows = {};
+  ORDER.forEach(function (k) {
+    var el = document.querySelector('.tier[data-tier="' + k + '"]');
+    rows[k] = {
+      el:    el,
+      radio: el.querySelector("input"),
+      hrs:   document.getElementById("f-" + k + "-hrs"),
+      net:   document.getElementById("f-" + k + "-net")
+    };
+  });
+
+  // Null until the reader picks one for themselves. Until then the page
+  // suggests the fit from their answers and keeps re-suggesting as those
+  // answers change; once they have chosen, their choice stands.
+  var chosen = null;
+
+  function num(el, fallback) {
+    var v = parseFloat(el.value);
+    return (isFinite(v) && v >= 0) ? v : fallback;
+  }
+
+  function money(n) {
+    return "£" + Math.round(n).toLocaleString("en-GB");
+  }
+
+  function signed(n) {
+    return (n < 0 ? "−" : "") + money(Math.abs(n));
+  }
+
+  function hoursText(h) {
+    return (Math.round(h * 10) / 10) + "h";
+  }
+
+  function answers() {
+    return {
+      rate:     num(f.rate, 0),
+      inbox:    num(f.inbox, 0),
+      notes:    num(f.notes, 0),
+      receipts: num(f.receipts, 0),
+      people:   Math.max(1, Math.round(num(f.people, 1))),
+      provider: f.provider.value
+    };
+  }
+
+  // What each tier actually takes off you in a month. Inbox is credited
+  // with the inbox hours and nothing else, because the inbox is all it
+  // touches — crediting it with write-ups it does not do would make the
+  // cheap option look better than it is.
+  function hoursFor(key, a) {
+    var weekly  = a.inbox + (key === "inbox" ? 0 : a.notes);
+    var monthly = (key === "inbox" ? 0 : a.receipts);
+    var each    = weekly * WEEKS + monthly;
+    return key === "firm" ? each * a.people : each;
+  }
+
+  function suggest(a) {
+    if (a.people >= 2) return "firm";
+    if (a.notes > 0 || a.receipts > 0) return "office";
+    return "inbox";
+  }
+
+  function verdict(key, a, hours, cost) {
+    var t = TIERS[key];
+    var diff = cost - t.fee;
+
+    if (hours === 0 || a.rate === 0) {
+      return "Put your own figures in above and this paragraph will say something useful. " +
+             "With nothing in it, it can't.";
+    }
+
+    var lead;
+    if (diff > 0) {
+      lead = "On your own numbers, the " + hoursText(hours) + " a month <b>" + t.name +
+             "</b> would take off you costs you <b>" + money(diff) + " a month more than the fee</b> " +
+             "— and that is before the part nobody prices, which is doing it at nine in the evening. " +
+             "How much of it actually comes back is the thing to find out, not to assume.";
+    } else {
+      lead = "On your own numbers, <b>" + t.name + "</b> costs <b>" + money(Math.abs(diff)) +
+             " a month more than the " + hoursText(hours) + " it would take off you</b>. " +
+             "That's a real answer and it points at no — for this one, at least. " +
+             "I'd rather you worked that out here than three invoices in.";
+    }
+
+    // The honest footnotes. Each is a case where the chosen tier is the
+    // wrong shape for the answers given, and saying so is worth more than
+    // the sale.
+    var note = "";
+    if (key === "office" && a.notes === 0 && a.receipts === 0) {
+      note = " You've put nothing down for write-ups or receipts, so Back Office would take exactly what " +
+             "Inbox takes and cost £500 more for it. On these answers, Inbox is the honest choice.";
+    } else if (key === "inbox" && a.people > 1) {
+      note = " Inbox is one mailbox. For " + a.people + " people that's The Firm, not " + a.people +
+             " lots of this.";
+    } else if (key === "firm" && a.people === 1) {
+      note = " The Firm prices three people. On one, Back Office is the same service for £1,350 less.";
+    }
+
+    return lead + note;
+  }
+
+  function providerNote(a) {
+    if (a.provider === "ms") {
+      return "On Microsoft 365 the permission I'd ask you for doesn't include sending at all — you'll see that on " +
+             "Microsoft's own consent screen before you agree to anything.";
+    }
+    if (a.provider === "google") {
+      return "On Google Workspace the nearest permission is broader and does allow sending, so there the guarantee " +
+             "rests on the software rather than on Google. I'd rather tell you that than let you assume otherwise.";
+    }
+    return "Outside Microsoft 365 and Google Workspace it depends on what you're running — tell me and I'll say " +
+           "plainly whether I can do it properly or not.";
+  }
+
+  function body(key, a, hours, cost) {
+    var t = TIERS[key];
+    var L = [
+      "Numbers from the audit page:",
+      "",
+      "Hourly rate:              £" + a.rate,
+      "Inbox, hours a week:      " + a.inbox,
+      "Write-ups, hours a week:  " + a.notes,
+      "Receipts, hours a month:  " + a.receipts,
+      "People in the practice:   " + a.people,
+      "Mail runs on:             " + (a.provider === "ms" ? "Microsoft 365"
+                                    : a.provider === "google" ? "Google Workspace" : "Something else"),
+      "",
+      "I'm looking at " + t.name + ", at " + money(t.fee) + " a month.",
+      "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + ".",
+      ""
+    ];
+    ORDER.forEach(function (k) {
+      if (k === key) { return; }
+      var h = hoursFor(k, a);
+      L.push("(" + TIERS[k].name + " for comparison: " + hoursText(h) + ", worth " +
+             money(h * a.rate) + ", against " + money(TIERS[k].fee) + ".)");
+    });
+    L.push("", "What I'd want to ask about first:", "");
+    return L.join("\n");
+  }
+
+  function render() {
+    var a   = answers();
+    var key = chosen || suggest(a);
+
+    ORDER.forEach(function (k) {
+      var h = hoursFor(k, a);
+      var r = rows[k];
+      r.hrs.textContent = hoursText(h);
+      r.net.textContent = signed(h * a.rate - TIERS[k].fee);
+      r.el.classList.toggle("on", k === key);
+      r.radio.checked = (k === key);
+    });
+
+    var t     = TIERS[key];
+    var hours = hoursFor(key, a);
+    var cost  = hours * a.rate;
+    var diff  = cost - t.fee;
+
+    out.head.textContent = "What " + t.name + " would be worth to you";
+    out.hoursLbl.textContent = (key === "firm" && a.people > 1)
+      ? "The practice's hours, at your rate"
+      : "The hours it takes off you, at your rate";
+    out.cost.textContent = money(cost);
+    out.tier.textContent = "The fee — " + t.name;
+    out.fee.textContent  = money(t.fee);
+    out.diff.textContent = signed(diff);
+
+    out.verdict.innerHTML = verdict(key, a, hours, cost);
+
+    out.provider.textContent = providerNote(a);
+    if (a.people > 3) {
+      out.provider.textContent += " More than three people is past what The Firm covers as listed — " +
+                                  "say how many and I'll price it honestly rather than stretch the tier.";
+    }
+
+    out.send.href = "mailto:harrison@swancampbell.co.uk" +
+                    "?subject=" + encodeURIComponent("The audit — " + t.name) +
+                    "&body="    + encodeURIComponent(body(key, a, hours, cost));
+  }
+
+  Object.keys(f).forEach(function (k) {
+    f[k].addEventListener("input", render);
+    f[k].addEventListener("change", render);
+  });
+
+  ORDER.forEach(function (k) {
+    rows[k].radio.addEventListener("change", function () {
+      chosen = k;
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
