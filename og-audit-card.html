@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>og card — source for og-audit.png</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=Public+Sans:wght@400;500;600&display=block">
+<style>
+  /* The site's own tokens, light mode. A share card is served into other
+     people's chrome, so it commits to paper rather than following a theme. */
+  :root {
+    --ink:       #14171A;
+    --ink-2:     #454B51;
+    --muted:     #757B81;
+    --paper:     #FBFAF8;
+    --surface:   #FFFFFF;
+    --line:      #D6D3CC;
+    --line-soft: #E7E4DD;
+    --accent:    #1F3D4C;
+    --brass:     #8C7141;
+    --f-head: "Literata", Georgia, serif;
+    --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--f-body);
+    padding: 56px 72px 48px;
+    display: flex; flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 18px; border-bottom: 3px solid var(--ink);
+  }
+  .mark { font-family: var(--f-head); font-weight: 700; font-size: 34px; letter-spacing: 0.01em; }
+  .where {
+    font-size: 17px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  main {
+    flex: 1; display: grid; grid-template-columns: 1fr 400px;
+    gap: 0 64px; align-items: center; padding: 8px 0 0;
+  }
+
+  h1 {
+    font-family: var(--f-head); font-weight: 600;
+    font-size: 68px; line-height: 1.04; letter-spacing: -0.03em;
+    max-width: 12ch;
+  }
+  .lede {
+    margin-top: 26px; font-size: 23px; line-height: 1.45;
+    color: var(--ink-2); max-width: 30ch;
+  }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  /* The ledger the page is actually built around. */
+  .sum { border-top: 2px solid var(--ink); }
+  .sum .row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 28px; padding: 15px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .sum .row.rule { border-bottom-color: var(--brass); border-bottom-width: 2px; }
+  .sum .k { font-size: 18px; color: var(--ink-2); }
+  .sum .v {
+    font-family: var(--f-head); font-weight: 600; font-size: 22px;
+    font-variant-numeric: lining-nums tabular-nums; white-space: nowrap;
+  }
+  .sum .row.total .v { font-size: 34px; color: var(--accent); letter-spacing: -0.02em; }
+  .sum .cap { margin-top: 14px; font-size: 15px; color: var(--muted); line-height: 1.5; }
+
+  footer {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: 17px; color: var(--muted); letter-spacing: 0.04em;
+  }
+  footer .url { color: var(--accent); font-weight: 600; }
+</style>
+</head>
+<body>
+
+  <header>
+    <span class="mark">Swan Campbell</span>
+    <span class="where">The audit</span>
+  </header>
+
+  <main>
+    <div>
+      <h1>Count a week of it, then decide.</h1>
+      <p class="lede">Six questions about your own week, and then a figure you can weigh the fee against. <b>Nothing stored, nothing sent.</b></p>
+    </div>
+
+    <div class="sum">
+      <div class="row">
+        <span class="k">The hours it takes off you</span>
+        <span class="v">£2,250</span>
+      </div>
+      <div class="row rule">
+        <span class="k">The fee — Back Office</span>
+        <span class="v">£950</span>
+      </div>
+      <div class="row total">
+        <span class="k">The difference</span>
+        <span class="v">£1,300</span>
+      </div>
+      <p class="cap">Your numbers, not mine. It will also tell you when the answer is no.</p>
+    </div>
+  </main>
+
+  <footer>
+    <span>Back-office support · United Kingdom</span>
+    <span class="url">swancampbell.co.uk/audit</span>
+  </footer>
+
+</body>
+</html>
