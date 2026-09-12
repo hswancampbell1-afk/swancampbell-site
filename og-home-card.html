@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>og card — source for og-home.png</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=Public+Sans:wght@400;500;600&display=block">
+<style>
+  /* The site's own tokens, light mode. A share card is served into other
+     people's chrome, so it commits to paper rather than following a theme.
+     Sibling of og-audit-card.html: same masthead, same grid, same footer
+     rule. What changes is which of the site's own artefacts it carries -
+     the audit shows the ledger, this shows the four things. */
+  :root {
+    --ink:       #14171A;
+    --ink-2:     #454B51;
+    --muted:     #757B81;
+    --paper:     #FBFAF8;
+    --line:      #D6D3CC;
+    --line-soft: #E7E4DD;
+    --accent:    #1F3D4C;
+    --brass:     #8C7141;
+    --f-head: "Literata", Georgia, serif;
+    --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--f-body);
+    padding: 56px 72px 48px;
+    display: flex; flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    padding-bottom: 18px; border-bottom: 3px solid var(--ink);
+  }
+  .mark { font-family: var(--f-head); font-weight: 700; font-size: 34px; letter-spacing: 0.01em; }
+  .where {
+    font-size: 17px; font-weight: 600; color: var(--muted);
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  main {
+    flex: 1; display: grid; grid-template-columns: 1fr 392px;
+    gap: 0 64px; align-items: center; padding: 8px 0 0;
+  }
+
+  h1 {
+    font-family: var(--f-head); font-weight: 600;
+    font-size: 56px; line-height: 1.06; letter-spacing: -0.028em;
+    max-width: 15ch; text-wrap: balance;
+  }
+  .lede {
+    margin-top: 24px; font-size: 22px; line-height: 1.45;
+    color: var(--ink-2); max-width: 34ch; text-wrap: pretty;
+  }
+  .lede b { color: var(--ink); font-weight: 600; }
+
+  /* The four things, as the ruled entries the page sets them in. */
+  .does { border-top: 2px solid var(--ink); }
+  .does .row {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; padding: 13px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .does .k { font-family: var(--f-head); font-weight: 600; font-size: 21px; }
+  .does .v { font-size: 16px; color: var(--muted); text-align: right; }
+
+  .fee {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 24px; margin-top: 18px; padding-top: 15px;
+    border-top: 2px solid var(--brass);
+  }
+  .fee .k { font-size: 18px; color: var(--ink-2); }
+  .fee .v {
+    font-family: var(--f-head); font-weight: 600; font-size: 34px;
+    color: var(--accent); letter-spacing: -0.02em;
+    font-variant-numeric: lining-nums tabular-nums; white-space: nowrap;
+  }
+
+  footer {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 40px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: 17px; color: var(--muted); letter-spacing: 0.04em;
+  }
+  footer .claim { color: var(--ink); font-weight: 600; letter-spacing: 0; }
+  footer .url { color: var(--accent); font-weight: 600; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+  <header>
+    <span class="mark">Swan Campbell</span>
+    <span class="where">Back-office support · United Kingdom</span>
+  </header>
+
+  <main>
+    <div>
+      <h1>The admin you keep meaning to deal with, dealt with.</h1>
+      <p class="lede">A few hours a week of work you'd never put on a client invoice. <b>That's the work I take.</b></p>
+    </div>
+
+    <div>
+      <div class="does">
+        <div class="row"><span class="k">Your inbox</span><span class="v">sorted, replies drafted</span></div>
+        <div class="row"><span class="k">Your meetings</span><span class="v">written up, actions owned</span></div>
+        <div class="row"><span class="k">Your receipts</span><span class="v">captured, oddities flagged</span></div>
+        <div class="row"><span class="k">Your prep</span><span class="v">one page, sourced</span></div>
+      </div>
+      <div class="fee">
+        <span class="k">A month at a time, from</span>
+        <span class="v">£450</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span class="claim">Nothing goes out in your name without you approving it.</span>
+    <span class="url">swancampbell.co.uk</span>
+  </footer>
+
+</body>
+</html>

@@ -28,26 +28,36 @@ Google as "manage drafts and send emails", so on Google the permission would
 allow sending and only the software prevents it. The page says so. The
 admission is why the Microsoft half is worth believing.
 
-## The share card
+## The share cards
 
-`og-audit.png` is what LinkedIn, Slack and X render when someone pastes
-`/audit`. It is a PNG because those crawlers will not render an SVG, which is
-the one place on this site a raster file is unavoidable.
+`og-home.png` and `og-audit.png` are what LinkedIn, Slack and X render when
+someone pastes a link. They are PNGs because those crawlers will not render an
+SVG `og:image`, and one that silently fails is worse than none — the only
+place on this site a raster file is unavoidable.
 
-It is generated from `og-audit-card.html`, not drawn — the card is the site's
-own CSS at 1200×630, so it uses the real Literata and Public Sans rather than
-an approximation of them. To rebuild it after changing a price or a line:
+Both are generated from their `-card.html` source rather than drawn, so they
+are the site's own tokens and the real Literata and Public Sans at 1200×630,
+not an approximation that drifts from the page the moment either changes. The
+two are deliberately siblings — same masthead, same two-column grid, same
+footer rule — and differ in which of the site's own artefacts they carry: the
+front page shows the four things and the fee, the audit shows the ledger.
+
+To rebuild either after changing a price or a line:
 
     chrome --headless=new --hide-scrollbars --force-device-scale-factor=2 \
            --window-size=1200,630 --virtual-time-budget=15000 \
-           --screenshot=og-2x.png og-audit-card.html
-    magick og-2x.png -resize 1200x630 -strip og-audit.png
+           --screenshot=og-2x.png og-home-card.html
+    magick og-2x.png -resize 1200x630 -strip og-home.png
 
 Rendered at 2× and downsampled, because text rasterised straight to 1200 wide
-is visibly softer. Chrome needs a short path — it fails to write the file from
-a deep one — and `--virtual-time-budget` is what gives the webfonts time to
-arrive; without it the card renders in Georgia and Arial.
+is visibly softer. Chrome needs a short working path — it fails to write the
+file from a deep one — and `--virtual-time-budget` is what gives the webfonts
+time to arrive; without it the card renders in Georgia and Arial.
 
-The figures on the card (£2,250, £950, £1,300) are the page's own defaults at
-£150/hr. If the tier prices change in `index.html` they are wrong here too,
-and nothing will say so.
+Both cards carry prices: £450 on the front-page card, and £2,250 / £950 /
+£1,300 on the audit card, which are the audit's own defaults at £150/hr.
+Changing a tier price in `index.html` makes both wrong, and nothing will say
+so. Rebuild them the same day.
+
+Crawlers cache hard. A link already pasted somewhere will keep showing the old
+preview until that cache expires; LinkedIn's Post Inspector forces a refresh.
