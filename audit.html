@@ -451,7 +451,7 @@
       </div>
       <div class="q-row">
         <label for="people">People with a week like yours
-          <span class="hint">Just you, or you and whoever else is drowning. Your answers are taken as typical for each of them, and only The Firm covers more than one mailbox.</span>
+          <span class="hint">Just you, or you and whoever else is drowning. Your answers are taken as typical for each of them, and only the <b>+</b> tiers cover more than one mailbox.</span>
         </label>
         <input id="people" type="number" min="1" step="1" value="1" inputmode="numeric">
       </div>
@@ -471,7 +471,7 @@
   <div class="wrap">
     <p class="label">Which one</p>
     <h2>Which of them you're pricing.</h2>
-    <p>Inbox takes the inbox. Back Office takes the write-ups and the receipts as well &mdash; so it carries more of your week, and costs more. Both are here so you can see the gap rather than take my word for which one you want.</p>
+    <p>Inbox takes the inbox. Back Office takes the write-ups and the receipts as well &mdash; so it carries more of your week, and costs more. The two <b>+</b> tiers are the same work pooled across up to three mailboxes in one practice. All four are here so you can see the gaps rather than take my word for which one you want.</p>
 
     <div class="tiers" role="radiogroup" aria-label="Which service to price">
       <div class="tier-head" aria-hidden="true">
@@ -491,30 +491,38 @@
         <span class="fig fee" data-l="Fee">&pound;450</span>
         <span class="fig net" data-l="Difference" id="f-inbox-net">&mdash;</span>
       </label>
-
+      <label class="tier" data-tier="inbox_plus">
+        <input type="radio" name="tier" value="inbox_plus">
+        <span class="t-label">
+          <span class="t-name">Inbox+</span>
+          <span class="t-what">The same, pooled across up to three mailboxes &mdash; one shared allowance, at the same &pound;450 each.</span>
+        </span>
+        <span class="fig hrs" data-l="Hours" id="f-inbox_plus-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Fee">&pound;1,350</span>
+        <span class="fig net" data-l="Difference" id="f-inbox_plus-net">&mdash;</span>
+      </label>
       <label class="tier" data-tier="office">
         <input type="radio" name="tier" value="office">
         <span class="t-label">
           <span class="t-name">Back Office</span>
-          <span class="t-what">Everything above, plus the write-ups, the receipts and the prep.</span>
+          <span class="t-what">Everything Inbox does, plus the write-ups, the receipts and the prep.</span>
         </span>
         <span class="fig hrs" data-l="Hours" id="f-office-hrs">&mdash;</span>
         <span class="fig fee" data-l="Fee">&pound;950</span>
         <span class="fig net" data-l="Difference" id="f-office-net">&mdash;</span>
       </label>
-
-      <label class="tier" data-tier="firm">
-        <input type="radio" name="tier" value="firm">
+      <label class="tier" data-tier="office_plus">
+        <input type="radio" name="tier" value="office_plus">
         <span class="t-label">
-          <span class="t-name">The Firm</span>
-          <span class="t-what">Back Office for up to three people in the same practice.</span>
+          <span class="t-name">Back Office+</span>
+          <span class="t-what">The same, pooled across up to three mailboxes. &pound;800 each rather than &pound;950.</span>
         </span>
-        <span class="fig hrs" data-l="Hours" id="f-firm-hrs">&mdash;</span>
-        <span class="fig fee" data-l="Fee">&pound;2,300</span>
-        <span class="fig net" data-l="Difference" id="f-firm-net">&mdash;</span>
+        <span class="fig hrs" data-l="Hours" id="f-office_plus-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Fee">&pound;2,400</span>
+        <span class="fig net" data-l="Difference" id="f-office_plus-net">&mdash;</span>
       </label>
     </div>
-    <p class="also">Every figure here is a month &mdash; your weekly answers multiplied out at 4.3 weeks, so two hours a week shows as 8.7. <b>Hours</b> is what that one would take off you; Inbox is credited with the inbox hours alone, because the inbox is all it touches, and the small line beneath each figure says whose hours they are. <b>Difference</b> is what those hours cost at your rate, less the fee.</p>
+    <p class="also">Every figure here is a month &mdash; your weekly answers multiplied out at 4.3 weeks, so two hours a week shows as 8.7. <b>Hours</b> is what that one would take off you; the inbox tiers are credited with the inbox hours alone, because the inbox is all they touch, and the small line beneath each figure says whose hours they are. <b>Difference</b> is what those hours cost at your rate, less the fee.</p>
 
     <p class="label label-2">The reading</p>
     <div class="reading">
@@ -603,12 +611,39 @@
   // Keep the two pages agreeing; a prospect who checks will check this.
   var WEEKS = 13 / 3;
 
+  // Four tiers, Harrison's 12 Sep 2026 restructure. The "+" tiers are the
+  // same work pooled across up to three mailboxes in one practice, which
+  // is what `covers` means and the only thing headcount changes.
+  //
+  //   scope   which of the reader's answers that tier actually takes on
+  //   covers  how many mailboxes it pools
+  //   pooled  the + twin of a solo tier / solo  the single-mailbox twin
+  //   lighter the same headcount, inbox-only - what Back Office is
+  //           measured against when the reader has no write-ups
+  //
+  // Fees are the panel's own PLAN_PRICES. Inbox+ at £1,350 is exactly
+  // three times £450 and is NOT a per-mailbox discount; Back Office+ at
+  // £2,400 is £800 a mailbox against £950 solo, and is. The page says so
+  // rather than letting a reader assume both work the same way.
   var TIERS = {
-    inbox:  { name: "Inbox",       fee: 450,  covers: 1 },
-    office: { name: "Back Office", fee: 950,  covers: 1 },
-    firm:   { name: "The Firm",    fee: 2300, covers: 3 }
+    inbox: {
+      name: "Inbox", fee: 450, covers: 1, scope: "inbox",
+      pooled: "inbox_plus"
+    },
+    inbox_plus: {
+      name: "Inbox+", fee: 1350, covers: 3, scope: "inbox",
+      solo: "inbox"
+    },
+    office: {
+      name: "Back Office", fee: 950, covers: 1, scope: "full",
+      pooled: "office_plus", lighter: "inbox"
+    },
+    office_plus: {
+      name: "Back Office+", fee: 2400, covers: 3, scope: "full",
+      solo: "office", lighter: "inbox_plus"
+    }
   };
-  var ORDER = ["inbox", "office", "firm"];
+  var ORDER = ["inbox", "inbox_plus", "office", "office_plus"];
 
   var f = {
     rate:     document.getElementById("rate"),
@@ -680,19 +715,20 @@
     };
   }
 
-  // One person's month, from answers given for one person. Inbox is
-  // credited with the inbox hours alone, because the inbox is all it
-  // touches - crediting it with write-ups it does not do would make the
-  // cheap option look better than it is.
+  // One person's month, from answers given for one person. The inbox
+  // tiers are credited with the inbox hours alone, because the inbox is
+  // all they touch - crediting them with write-ups they do not do would
+  // make the cheap options look better than they are.
   function hoursEach(key, a) {
-    var weekly  = a.inbox + (key === "inbox" ? 0 : a.notes);
-    var monthly = (key === "inbox" ? 0 : a.receipts);
+    var full    = TIERS[key].scope === "full";
+    var weekly  = a.inbox + (full ? a.notes : 0);
+    var monthly = full ? a.receipts : 0;
     return weekly * WEEKS + monthly;
   }
 
-  // How many of those people a tier actually covers. Inbox and Back
-  // Office are one mailbox however many people are drowning; only The
-  // Firm scales, and only to three.
+  // How many mailboxes a tier actually covers. A solo tier is one mailbox
+  // however many people are drowning; a + tier pools three and no more,
+  // so a practice of five is still priced and credited at three.
   function headsCovered(key, a) {
     return Math.min(a.people, TIERS[key].covers);
   }
@@ -702,8 +738,11 @@
   }
 
   function suggest(a) {
-    if (a.people >= 2) return "firm";
-    if (a.notes > 0 || a.receipts > 0) return "office";
+    var full   = a.notes > 0 || a.receipts > 0;
+    var pooled = a.people >= 2;
+    if (full && pooled) { return "office_plus"; }
+    if (full)           { return "office"; }
+    if (pooled)         { return "inbox_plus"; }
     return "inbox";
   }
 
@@ -711,26 +750,27 @@
   // only when there is more than one person, because with one person
   // every figure on the page is already yours and the note would be noise.
   function scopeUnder(key, a) {
-    if (a.people < 2) return "";
+    if (a.people < 2) { return ""; }
     var heads = headsCovered(key, a);
-    if (heads === 1) return "one person's";
-    return hoursText(hoursEach(key, a)) + " each, " + heads + " people";
+    if (heads === 1) { return "one mailbox"; }
+    return hoursText(hoursEach(key, a)) + " each, " + heads + " mailboxes";
   }
 
   function scopeNote(key, a) {
-    if (a.people < 2) return "";
-    var t = TIERS[key];
-    var each = hoursText(hoursEach(key, a));
+    if (a.people < 2) { return ""; }
+    var t     = TIERS[key];
+    var each  = hoursText(hoursEach(key, a));
+    var heads = headsCovered(key, a);
 
-    if (key === "firm") {
-      var heads = headsCovered(key, a);
+    if (heads > 1) {
       return "Those are the practice's hours — " + each + " each, across " + heads +
-             plural(heads, " person", " people") +
-             (a.people > 3 ? " (The Firm covers three; you said " + a.people + ")" : "") +
+             plural(heads, " mailbox", " mailboxes") +
+             (a.people > 3 ? " (the + tiers pool three; you said " + a.people + ")" : "") +
              ". Inbox and Back Office cover one mailbox, so their hours are one person's.";
     }
-    return "Those are one person's hours — " + t.name + " covers one mailbox, whoever else is drowning. " +
-           "The Firm is the one that covers " + Math.min(a.people, 3) + " of you, at " + each + " each.";
+    return "Those are one person's hours — " + t.name + " covers one mailbox, whoever else is " +
+           "drowning. " + TIERS[t.pooled].name + " is the one that pools " +
+           Math.min(a.people, 3) + " of you, at " + each + " each.";
   }
 
   function verdict(key, a, hours, cost) {
@@ -759,18 +799,35 @@
     // The honest footnotes. Each is a case where the chosen tier is the
     // wrong shape for the answers given, and saying so is worth more than
     // the sale.
-    var note = "";
-    if (key === "office" && a.notes === 0 && a.receipts === 0) {
-      note = " You've put nothing down for write-ups or receipts, so Back Office would take exactly what " +
-             "Inbox takes and cost £500 more for it. On these answers, Inbox is the honest choice.";
-    } else if (key === "inbox" && a.people > 1) {
-      note = " Inbox is one mailbox. For " + a.people + " people that's The Firm, not " + a.people +
-             " lots of this.";
-    } else if (key === "firm" && a.people === 1) {
-      note = " The Firm prices three people. On one, Back Office is the same service for £1,350 less.";
+    // Two of these can be true at once - a tier can be both too much
+    // service and too few mailboxes - so they accumulate rather than
+    // race. When both fire, neither twin is the answer on its own and
+    // the last line names the one that is.
+    var notes = [];
+    var wrongScope = (t.scope === "full" && a.notes === 0 && a.receipts === 0);
+    var tooFew     = (t.covers === 1 && a.people > 1);
+    var tooMany    = (t.covers > 1 && a.people === 1);
+
+    if (wrongScope) {
+      var lighter = TIERS[t.lighter];
+      notes.push("You've put nothing down for write-ups or receipts, so " + t.name +
+                 " would take exactly what " + lighter.name + " takes and cost " +
+                 money(t.fee - lighter.fee) + " more for it." +
+                 (tooFew ? "" : " On these answers, " + lighter.name + " is the honest choice."));
+    }
+    if (tooFew) {
+      notes.push(t.name + " is one mailbox. For " + a.people + " people that's " +
+                 TIERS[t.pooled].name + ", not " + a.people + " lots of this.");
+    } else if (tooMany) {
+      var solo = TIERS[t.solo];
+      notes.push(t.name + " pools three mailboxes. On one, " + solo.name +
+                 " is the same service for " + money(t.fee - solo.fee) + " less.");
+    }
+    if (wrongScope && tooFew) {
+      notes.push(TIERS[TIERS[t.lighter].pooled].name + " is the one that's both.");
     }
 
-    return lead + note;
+    return lead + (notes.length ? " " + notes.join(" ") : "");
   }
 
   function providerNote(a) {
@@ -792,27 +849,27 @@
     var L = [
       "Numbers from the audit page. The hours are one person's — mine:",
       "",
-      "Hourly rate:              £" + a.rate,
-      "Inbox, hours a week:      " + a.inbox,
-      "Write-ups, hours a week:  " + a.notes,
-      "Receipts, hours a month:  " + a.receipts,
+      "Hourly rate:                £" + a.rate,
+      "Inbox, hours a week:        " + a.inbox,
+      "Write-ups, hours a week:    " + a.notes,
+      "Receipts, hours a month:    " + a.receipts,
       "People with a week like it: " + a.people,
-      "Mail runs on:             " + (a.provider === "ms" ? "Microsoft 365"
-                                    : a.provider === "google" ? "Google Workspace" : "Something else"),
+      "Mail runs on:               " + (a.provider === "ms" ? "Microsoft 365"
+                                      : a.provider === "google" ? "Google Workspace" : "Something else"),
       "",
       "I'm looking at " + t.name + ", at " + money(t.fee) + " a month.",
       (heads > 1
-        ? "That covers " + heads + " of us at " + hoursText(hoursEach(key, a)) + " each — " +
+        ? "That pools " + heads + " mailboxes at " + hoursText(hoursEach(key, a)) + " each — " +
           hoursText(hours) + " a month across the practice, worth " + money(cost) + "."
         : "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + "."),
       ""
     ];
     ORDER.forEach(function (k) {
       if (k === key) { return; }
-      var h = hoursFor(k, a);
+      var h  = hoursFor(k, a);
       var hs = headsCovered(k, a);
       L.push("(" + TIERS[k].name + " for comparison: " + hoursText(h) +
-             (hs > 1 ? " across " + hs : " for one person") + ", worth " +
+             (hs > 1 ? " across " + hs + " mailboxes" : " for one mailbox") + ", worth " +
              money(h * a.rate) + ", against " + money(TIERS[k].fee) + ".)");
     });
     L.push("", "What I'd want to ask about first:", "");
@@ -855,8 +912,8 @@
 
     out.provider.textContent = providerNote(a);
     if (a.people > 3) {
-      out.provider.textContent += " More than three people is past what The Firm covers as listed — " +
-                                  "say how many and I'll price it honestly rather than stretch the tier.";
+      out.provider.textContent += " More than three mailboxes is past what the + tiers pool — " +
+                                  "say how many and I'll price it honestly rather than stretch a tier.";
     }
 
     out.send.href = "mailto:harrison@swancampbell.co.uk" +
