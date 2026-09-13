@@ -43,6 +43,21 @@ nothing here would say so. Two tests in that repository hold the line:
 `test_a_pooled_tier_is_never_worse_than_buying_the_solo_tier_three_times`
 and `test_a_solo_tier_is_not_quietly_pooled`.
 
+A fifth, added 13 September 2026: both drafted-reply specimens (the front
+page's Tom and the audit's Marion) say they are exactly what the software
+writes. That is true because the draft composer in `vatools` is told never to
+invent facts, dates or commitments that were not in the email it answers, and
+to write a bracketed placeholder instead - and `draftcheck.py` flags a reply
+that introduces a date or figure the incoming email did not contain. Every
+word outside a bracket in both specimens must be traceable to the incoming
+email shown above it. The first versions of both were not: they invented a
+delivery time, a warehouse delay, a Q3 headcount change, and a conclusion
+about a client's banking covenant, which is the most dangerous sentence a
+machine could draft for this audience and the one thing the software is
+built never to write. If placeholders are ever filled from the client's own
+mail, each filled value must show its source, and the specimens should only
+change once that is built and verified - not before.
+
 The pattern is now worth naming, since it has happened twice. Every claim on
 this site that a prospect would find persuasive is a claim about software in
 `vatools`, and neither repository's tests know about the other. The claims

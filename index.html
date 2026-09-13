@@ -224,6 +224,18 @@
     letter-spacing: 0.02em; display: block; margin-bottom: 11px;
   }
   .specimen p { margin: 0; max-width: none; }
+  /* What the draft was written FROM, above the draft itself, so every word
+     outside a bracket can be traced to the client's own email by eye. */
+  .specimen p.incoming {
+    color: var(--muted); margin: 0 0 14px; padding: 0 0 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  /* A fact only the recipient knows. The composer is told never to guess
+     these (DRAFT_SYSTEM_PROMPT: "write a placeholder like [confirm date]
+     rather than guessing"), and draftcheck treats a draft still carrying
+     one as unfinished - so they are set to be seen, not blended in. */
+  .specimen .ph { color: var(--brass); font-weight: 600; }
+
 
   /* ---------- the spine: full-bleed guarantee ---------- */
   .spine {
@@ -441,11 +453,13 @@
     <p>The inbox line above is the easy half to claim. This is the harder half: a reply already written, in your voice, sitting in your own Drafts folder before you have opened it.</p>
 
     <div class="specimen">
-      <span class="from">Re: October management accounts &mdash; draft, not sent</span>
-      <p>Hi Tom &mdash; you&rsquo;ll have the October pack by Thursday lunchtime rather than Wednesday. The stock count came back late from the warehouse and I&rsquo;d rather the numbers were right than early. Nothing in it moves the covenant position, so there&rsquo;s nothing you need to do before the board call.</p>
+      <span class="from">From Tom, 07:12</span>
+      <p class="incoming">The October pack was due Wednesday. Any update? I need it before Friday&rsquo;s board call.</p>
+      <span class="from">Re: October pack &middot; draft, not sent</span>
+      <p>Hi Tom, sorry for the wait. You&rsquo;ll have the October pack by <span class="ph">[confirm date]</span>. <span class="ph">[Reason for the delay, if you want to give one.]</span> <span class="ph">[Anything he should know before Friday&rsquo;s board call.]</span></p>
     </div>
 
-    <p class="also">Constructed, not a client&rsquo;s. The shape is what matters: it gives the reason for the delay, and it ends the sentence that would otherwise have you worrying until Thursday.</p>
+    <p class="also">Constructed, not a client&rsquo;s, but this time it is exactly what the software writes. Everything outside the brackets came from Tom&rsquo;s own email. Everything inside them is something only you know, and it will never guess those in your name: not the date, not the reason, and never whether the numbers are fine. Filling three brackets takes seconds. The email around them was the part that took the time.</p>
   </div>
 </section>
 

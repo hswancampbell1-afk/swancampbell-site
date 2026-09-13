@@ -334,6 +334,19 @@
     font-family: var(--f-mono); font-size: 12.5px; color: var(--muted);
     letter-spacing: 0.02em; display: block; margin-bottom: 9px;
   }
+  .specimen p { margin: 0; max-width: none; }
+  /* What the draft was written FROM, above the draft itself, so every word
+     outside a bracket can be traced to the client's own email by eye. */
+  .specimen p.incoming {
+    color: var(--muted); margin: 0 0 14px; padding: 0 0 14px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  /* A fact only the recipient knows. The composer is told never to guess
+     these (DRAFT_SYSTEM_PROMPT: "write a placeholder like [confirm date]
+     rather than guessing"), and draftcheck treats a draft still carrying
+     one as unfinished - so they are set to be seen, not blended in. */
+  .specimen .ph { color: var(--brass); font-weight: 600; }
+
 
   /* ---------- close ---------- */
   .start {
@@ -558,9 +571,12 @@
         <time>07:41</time>
         <div class="what">One of the seven, waiting in your own Drafts folder:
           <div class="specimen">
-            <span class="from">Re: Thursday's board pack — draft, not sent</span>
-            Hi Marion — Thursday still works. I'll have the pack with you by Wednesday lunchtime so there's a clear evening to read it. One thing worth flagging in advance: the Q3 headcount line has moved since we last spoke, and I'd rather walk you through it than have you find it on the night.
+            <span class="from">From Marion, 06:58</span>
+            <p class="incoming">Can I have the board pack before Thursday? I&rsquo;d like to read it on Wednesday evening.</p>
+            <span class="from">Re: Board pack &middot; draft, not sent</span>
+            <p>Hi Marion, you&rsquo;ll have the board pack by <span class="ph">[confirm day and time]</span>. <span class="ph">[Anything worth flagging before you read it on Wednesday.]</span></p>
           </div>
+          <p class="also">Everything outside the brackets is from Marion&rsquo;s email. The date is yours to give, and so is anything worth flagging; the software will not guess either in your name.</p>
         </div>
       </li>
       <li>
