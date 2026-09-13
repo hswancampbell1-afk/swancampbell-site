@@ -61,6 +61,7 @@
 
     --f-head: "Literata", Georgia, "Times New Roman", serif;
     --f-body: "Public Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --f-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -205,6 +206,25 @@
   .does dd { padding-left: 28px; color: var(--ink-2); font-size: 16.5px; }
   .also { font-size: 16px; color: var(--muted); margin: 18px 0 0; max-width: 62ch; }
 
+  /* ---------- a draft, shown rather than described ----------
+     The page claims replies are drafted and waiting; this is one. Same
+     treatment as the audit page's specimen, because it is the same
+     artefact and the two pages should not disagree about what it looks
+     like. Set on --surface so it reads as a thing lifted out of the
+     mailbox rather than another paragraph of the page. */
+  .specimen {
+    margin: 26px 0 0; padding: 20px 22px;
+    background: var(--surface);
+    border: 1px solid var(--line-soft); border-left: 2px solid var(--line);
+    font-size: 16px; color: var(--ink-2); line-height: 1.62;
+    max-width: 60ch;
+  }
+  .specimen .from {
+    font-family: var(--f-mono); font-size: 12.5px; color: var(--muted);
+    letter-spacing: 0.02em; display: block; margin-bottom: 11px;
+  }
+  .specimen p { margin: 0; max-width: none; }
+
   /* ---------- the spine: full-bleed guarantee ---------- */
   .spine {
     background: var(--spine-bg); color: var(--spine-ink);
@@ -277,11 +297,26 @@
   .rates tr.lead th, .rates tr.lead td { background: var(--surface); }
   .rates tr.lead .fee { color: var(--accent); }
 
-  .rates .per {
-    display: block; margin-top: 3px;
+  .rates thead th {
     font-family: var(--f-body); font-size: 11px; font-weight: 600;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    width: auto; padding: 0 0 9px; border-bottom: 0; white-space: nowrap;
   }
+  .rates thead .fee, .rates thead .rate { text-align: right; }
+  .rates thead .fee { padding-right: 16px; }
+  .rates .rate {
+    font-family: var(--f-head); font-weight: 600; font-size: 18px;
+    color: var(--ink-2); white-space: nowrap; width: 104px;
+    text-align: right; letter-spacing: -0.015em;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .rates tr.lead .rate { color: var(--ink); }
+
+  /* The terms, as terms. They were a sentence listing four facts; a
+     reader checking one of them should not have to read the other
+     three. Same ruled device the arithmetic above already uses. */
+  .terms { max-width: 430px; margin-top: 30px; }
+  .terms dd { font-size: 16px; letter-spacing: 0; }
 
   /* ---------- start ---------- */
   .start {
@@ -298,15 +333,15 @@
   }
   .start p { color: var(--ink-2); font-size: 16.5px; max-width: 58ch; }
 
-  a.mail {
+  a.mail, a.go {
     display: inline-block; margin-top: 24px;
     font-family: var(--f-head); font-size: 19px; font-weight: 600;
     color: var(--accent); text-decoration: none;
     border-bottom: 2px solid var(--accent-2); padding-bottom: 3px;
     transition: color 160ms cubic-bezier(.16,1,.3,1), border-color 160ms cubic-bezier(.16,1,.3,1);
   }
-  a.mail:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  a.mail:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+  a.mail:hover, a.go:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  a.mail:focus-visible, a.go:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
 
   footer {
     padding: 30px 0 48px; border-top: 2px solid var(--ink);
@@ -333,7 +368,15 @@
     .rates th, .rates td { padding: 0; border-bottom: 0; background: none; }
     .rates th { box-shadow: none; padding-left: 0; }
     .rates tr.lead { box-shadow: inset 2px 0 0 var(--brass); background: var(--surface); }
-    .rates .fee { text-align: left; padding: 3px 0 6px; font-size: 21px; }
+    .rates thead { display: none; }
+    .rates .fee { text-align: left; padding: 3px 0 2px; font-size: 21px; }
+    .rates .rate { text-align: left; width: auto; padding: 0 0 6px; font-size: 16px; }
+    .rates .fee::before, .rates .rate::before {
+      content: attr(data-l) " ";
+      font-family: var(--f-body); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+    }
+    .rates .fee::before { display: block; margin-bottom: 1px; }
     .rates .what { padding-right: 0; }
     .start { padding: 26px 22px 24px; }
   }
@@ -387,7 +430,22 @@
       <dt>Your prep</dt>
       <dd>Who you're meeting, what they do, what's changed. One page, sourced, the day before.</dd>
     </dl>
-    <p class="also">Scheduling too, whenever you want it &mdash; part of whichever one you're on. Four things, done properly, and nothing else.</p>
+    <p class="also">Scheduling too, whenever you want it: part of whichever one you're on. Four things, done properly, and nothing else.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="label">What arrives</p>
+    <h2>One of this morning's, waiting in your drafts.</h2>
+    <p>The inbox line above is the easy half to claim. This is the harder half: a reply already written, in your voice, sitting in your own Drafts folder before you have opened it.</p>
+
+    <div class="specimen">
+      <span class="from">Re: October management accounts &mdash; draft, not sent</span>
+      <p>Hi Tom &mdash; you&rsquo;ll have the October pack by Thursday lunchtime rather than Wednesday. The stock count came back late from the warehouse and I&rsquo;d rather the numbers were right than early. Nothing in it moves the covenant position, so there&rsquo;s nothing you need to do before the board call.</p>
+    </div>
+
+    <p class="also">Constructed, not a client&rsquo;s. The shape is what matters: it gives the reason for the delay, and it ends the sentence that would otherwise have you worrying until Thursday.</p>
   </div>
 </section>
 
@@ -427,7 +485,8 @@
       <dd class="total">&pound;1,300</dd>
     </dl>
     <p class="also">Both of those are your numbers, not mine. And I'm not going to tell you how many hours you'll get back &mdash; I don't know yet, and anyone quoting you a figure before they've seen your inbox is guessing.</p>
-    <p class="also"><a href="/audit">Do the sum with your own figures</a> &mdash; six questions, and an ordinary day of it shown in full. Nothing stored, nothing sent.</p>
+    <a class="go" href="/audit">Do the sum with your own figures</a>
+    <p class="also">Six questions, an ordinary day of it shown in full, and nothing stored or sent.</p>
   </div>
 </section>
 
@@ -435,32 +494,47 @@
   <div class="wrap">
     <p class="label">What it costs</p>
     <table class="rates">
+      <thead>
+        <tr>
+          <th></th><th></th>
+          <th class="fee">A month</th>
+          <th class="rate">A mailbox</th>
+        </tr>
+      </thead>
       <tbody>
         <tr>
           <th scope="row">Inbox</th>
           <td class="what">One mailbox, sorted through the day, with replies drafted and waiting.</td>
-          <td class="fee">£450<span class="per">a month</span></td>
+          <td class="fee" data-l="a month">£450</td>
+          <td class="rate" data-l="a mailbox">£450</td>
         </tr>
         <tr>
           <th scope="row">Inbox+</th>
           <td class="what">The same, pooled across up to three mailboxes in one practice.</td>
-          <td class="fee">£1,350<span class="per">a month</span></td>
+          <td class="fee" data-l="a month">£1,350</td>
+          <td class="rate" data-l="a mailbox">£450</td>
         </tr>
         <tr class="lead">
           <th scope="row">Back Office</th>
           <td class="what">Everything Inbox does, plus the write-ups, the receipts and the prep.</td>
-          <td class="fee">£950<span class="per">a month</span></td>
+          <td class="fee" data-l="a month">£950</td>
+          <td class="rate" data-l="a mailbox">£950</td>
         </tr>
         <tr>
           <th scope="row">Back Office+</th>
           <td class="what">The same, pooled across up to three mailboxes in one practice.</td>
-          <td class="fee">£2,400<span class="per">a month</span></td>
+          <td class="fee" data-l="a month">£2,400</td>
+          <td class="rate" data-l="a mailbox">£800</td>
         </tr>
       </tbody>
     </table>
-    <p class="also">A month at a time. No setup fee, no minimum term, and no notice beyond the month you're in. The two <b>+</b> tiers pool one arrangement across up to three mailboxes in the same practice &mdash; three principals' admin, not a whole firm's. Beyond three, say how many and I'll price it rather than stretch the tier.</p>
-    <p class="also"><b>Inbox+ is not a discount.</b> Three mailboxes at &pound;1,350 is the same &pound;450 each you would pay on your own. What pooling buys is one arrangement instead of three, and one allowance instead of three separate ones &mdash; so a heavy mailbox draws on a quiet one&rsquo;s headroom, which three separate subscriptions cannot do for each other. Back Office+ is the one where pooling also costs less per mailbox &mdash; &pound;800 against &pound;950 &mdash; and I would rather tell you which is which than let you assume both.</p>
-    <p class="also">The step from Inbox to Back Office is &pound;500, and from Inbox+ to Back Office+ it is &pound;1,050. Either way it buys the three things the inbox does not touch &mdash; the write-ups, the receipts and the prep. Whether those are worth it depends on how long they take you, which is your figure and not mine. <a href="/audit">Put it in and compare all four side by side.</a></p>
+    <dl class="sum terms">
+      <dt>Commitment</dt><dd>A month at a time</dd>
+      <dt>Setup fee</dt><dd>None</dd>
+      <dt>Minimum term</dt><dd>None</dd>
+      <dt>Notice</dt><dd>The month you&rsquo;re in</dd>
+    </dl>
+    <p class="also">What the last column cannot show: pooling buys a shared allowance, so a heavy mailbox draws on a quiet one&rsquo;s headroom. Beyond three, say how many and I&rsquo;ll price it rather than stretch the tier.</p>
   </div>
 </section>
 
