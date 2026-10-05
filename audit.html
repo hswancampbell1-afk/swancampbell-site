@@ -479,7 +479,7 @@
   <div class="wrap">
     <p class="label">Which one</p>
     <h2>Which of them you're pricing.</h2>
-    <p>Inbox Starter takes the inbox: triage, the invoice chaser and a Monday round-up, for setup and the first month. Back Office takes the meeting notes and the receipts as well, and drafts the replies. Back Office+ is that, plus six on-request jobs a month. All three are here so you can see the gaps rather than take my word for which one you want.</p>
+    <p>Inbox Starter takes the inbox: triage, the invoice chaser and a Monday round-up, for setup and the first month. Back Office takes the meeting notes and the receipts as well, and drafts the replies. Back Office+ is that, plus up to six on-request jobs a month. One job is one clear deliverable, about 20–30 minutes, not an ongoing project. All three are here so you can see the gaps rather than take my word for which one you want.</p>
 
     <div class="tiers" role="radiogroup" aria-label="Which service to price">
       <div class="tier-head" aria-hidden="true">
@@ -513,7 +513,7 @@
         <input type="radio" name="tier" value="office_plus">
         <span class="t-label">
           <span class="t-name">Back Office+</span>
-          <span class="t-what">Everything in Back Office, plus six on-request jobs a month. Extras &pound;15. Monthly.</span>
+          <span class="t-what">Everything in Back Office, plus up to six on-request jobs a month. One job = one clear deliverable, about 20–30 minutes — not an ongoing project. Extras &pound;15 each; anything bigger needs a written yes first.</span>
         </span>
         <span class="fig hrs" data-l="Hours" id="f-office_plus-hrs">&mdash;</span>
         <span class="fig fee" data-l="Founding">&pound;125<span class="each">standard &pound;175</span></span>
@@ -582,7 +582,7 @@
       </li>
     </ol>
 
-    <p class="also">That Tuesday is Back Office, not every package. Inbox Starter is the triage, the invoice chaser and the Monday round-up. The drafts, the write-up, the receipts and the conflict check are what Back Office adds. A research brief is not a standing item in the afternoon: on Back Office+ it is one of six on-request jobs a month, and extras are £15.</p>
+    <p class="also">That Tuesday is Back Office, not every package. Inbox Starter is the triage, the invoice chaser and the Monday round-up. The drafts, the write-up, the receipts and the conflict check are what Back Office adds. A research brief is not a standing item in the afternoon. On Back Office+ it can be one of the six on-request jobs: one deliverable, about 20–30 minutes, not an ongoing project. Extras are £15 each, and anything bigger needs a written yes first.</p>
     <p class="also">Replies stay in those drafts until you send them. The only message the system can send is an overdue-invoice reminder, and only after you switch that on in writing and approve the template. That is <a href="/#guarantee">the guarantee</a>.</p>
   </div>
 </section>
@@ -727,7 +727,7 @@
     }
     line += ". Standard would be " + money(t.standard) + ".";
     if (key === "office_plus") {
-      line += " The six on-request jobs are not in the hours above.";
+      line += " The six on-request jobs are not in the hours above. Each is one deliverable, about 20–30 minutes, not an ongoing project.";
     }
     return line;
   }
@@ -768,7 +768,7 @@
 
     if (key === "office_plus") {
       notes.push("Back Office+ covers the same measured hours as Back Office. The extra " +
-                 money(t.fee - TIERS.office.fee) + " a month founding is six on-request jobs, which this sum doesn't price. Extras after six are £15.");
+                 money(t.fee - TIERS.office.fee) + " a month founding is six on-request jobs, which this sum doesn't price. One job is one clear deliverable, about 20–30 minutes, not an ongoing project. Extras after six are £15 each, and anything bigger needs a written yes first.");
     }
     if (key !== "starter" && inboxOnly) {
       notes.push("You've put nothing down for meeting notes or receipts, so the hours are only the inbox. Inbox Starter is the one priced for that.");

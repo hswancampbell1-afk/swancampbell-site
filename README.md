@@ -41,7 +41,9 @@ admission is why the Microsoft half is worth believing.
 
 The commercial offer changed on 5 October 2026. The public packages are
 Inbox Starter (setup and the first month), Back Office (monthly), and
-Back Office+ (monthly, including six on-request jobs, extras at £15).
+Back Office+ (monthly, including six on-request jobs). One job is one
+clear deliverable, about 20–30 minutes, not an ongoing project. Extras are
+£15 each, and anything bigger needs a written yes first.
 Founding prices are locked for 12 months, there are five founding places,
 and a 50% deposit secures one. The audit prices one person's week against
 those three founding fees. It does not pool several people into one fee,
