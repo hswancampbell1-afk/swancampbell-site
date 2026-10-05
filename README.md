@@ -10,22 +10,33 @@ Deliberately one page. A site does not win clients — conversations do — and
 this exists so that a prospect who has already been pitched can look the
 practice up and find something that reads as real.
 
-Three claims on it are load-bearing and must stay true: that nothing is ever
-sent without approval, that drafts may appear before they have been reviewed,
-and that the Microsoft 365 permission does not include sending. All three are
-properties of the software behind the service, not aspirations. If any stops
-being true, this page changes the same day.
+Three claims on it are load-bearing and must stay true: that nothing goes out
+in your name without you approving it, that drafts may appear before they have
+been reviewed, and that on Microsoft 365 sending permission is only requested
+if you switch on automatic invoice reminders — until then, the consent screen
+does not include sending. All three are properties of the software behind the
+service, not aspirations. If any stops being true, this page changes the same
+day.
+
+The first has one narrow exception, approved 5 October 2026. Replies are
+drafted, never sent. Calendar invitations go only when you press the button.
+Invoice reminders are drafts too by default; if you switch that on and approve
+the wording first, that approved reminder can be sent. Nothing else can.
 
 The third is the one most easily broken by accident, because it lives in
-another repository. It is true because `MICROSOFT_SCOPES["email"]` in the
-control panel is `Mail.Read`, `Mail.ReadWrite`, `User.Read` — creating a draft
-and sending one are separate permissions in Microsoft Graph, and only the
-first is held. Adding `Mail.Send` there would make this page false without
-anyone touching this repository.
+another repository. Until automatic invoice reminders are switched on, it is
+true because `MICROSOFT_SCOPES["email"]` in the control panel is `Mail.Read`,
+`Mail.ReadWrite`, `User.Read` — creating a draft and sending one are separate
+permissions in Microsoft Graph, and only the first is held. Adding `Mail.Send`
+to that default set would make the "until then" sentence on this page false
+without anyone touching this repository. Switching the reminders on is a
+reconnect, so Microsoft grants sending then and not before.
 
 Note what the page does *not* claim. Google's `gmail.compose` is described by
 Google as "manage drafts and send emails", so on Google the permission would
-allow sending and only the software prevents it. The page says so. The
+allow sending and only the software prevents a reply or an invitation from
+going out. The one send the software will make is an invoice reminder, and
+only after you switch that on and approve the wording. The page says so. The
 admission is why the Microsoft half is worth believing.
 
 A fourth joined them on 12 September 2026, and it lives in that same other

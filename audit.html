@@ -849,8 +849,9 @@
 
   function providerNote(a) {
     if (a.provider === "ms") {
-      return "On Microsoft 365 the permission I'd ask you for doesn't include sending at all — you'll see that on " +
-             "Microsoft's own consent screen before you agree to anything.";
+      return "On Microsoft 365, sending permission is only requested if you switch on automatic invoice reminders. " +
+             "Until then, the consent screen does not include sending. If you later switch that on, you'll be asked " +
+             "to reconnect so Microsoft can grant it.";
     }
     if (a.provider === "google") {
       return "On Google Workspace the nearest permission is broader and does allow sending, so there the guarantee " +
