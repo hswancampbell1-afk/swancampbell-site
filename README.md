@@ -39,22 +39,16 @@ going out. The one send the software will make is an invoice reminder, and
 only after you switch that on and approve the wording. The page says so. The
 admission is why the Microsoft half is worth believing.
 
-A fourth joined them on 12 September 2026, and it lives in that same other
-repository. The pricing section says a pooled `+` tier gives you one shared
-allowance across three mailboxes, so "a heavy mailbox draws on a quiet one's
-headroom" — and `/audit` prices three mailboxes at three times the hours on
-the strength of it. That is true because `plan_ceilings()` in the control
-panel multiplies `PLANS` by `POOLED_MAILBOXES` for the two `+` tiers. It was
-not true the day before: the pooled tiers shared one mailbox's ceiling
-between three, which made Inbox+ strictly worse than buying three Inboxes at
-the same price, and this page would have been selling a benefit that did not
-exist. Reading ceilings off `PLANS` directly again — the obvious-looking
-simplification, since that is where the numbers are — puts it back, and
-nothing here would say so. Two tests in that repository hold the line:
-`test_a_pooled_tier_is_never_worse_than_buying_the_solo_tier_three_times`
-and `test_a_solo_tier_is_not_quietly_pooled`.
+The commercial offer changed on 5 October 2026. The public packages are
+Inbox Starter (setup and the first month), Back Office (monthly), and
+Back Office+ (monthly, including six on-request jobs, extras at £15).
+Founding prices are locked for 12 months, there are five founding places,
+and a 50% deposit secures one. The audit prices one person's week against
+those three founding fees. It does not pool several people into one fee,
+and the site must not grow a pooled tier back unless the offer itself
+changes. Contact on every page is hswancampbell1@gmail.com.
 
-A fifth, added 13 September 2026: both drafted-reply specimens (the front
+The drafted-reply specimens, added 13 September 2026 (the front
 page's Tom and the audit's Marion) say they are exactly what the software
 writes. That is true because the draft composer in `vatools` is told never to
 invent facts, dates or commitments that were not in the email it answers, and
@@ -88,7 +82,7 @@ are the site's own tokens and the real Literata and Public Sans at 1200×630,
 not an approximation that drifts from the page the moment either changes. The
 two are deliberately siblings — same masthead, same two-column grid, same
 footer rule — and differ in which of the site's own artefacts they carry: the
-front page shows the four things and the fee, the audit shows the ledger.
+front page shows the founding prices, the audit shows the ledger.
 
 To rebuild either after changing a price or a line:
 
@@ -102,10 +96,12 @@ is visibly softer. Chrome needs a short working path — it fails to write the
 file from a deep one — and `--virtual-time-budget` is what gives the webfonts
 time to arrive; without it the card renders in Georgia and Arial.
 
-Both cards carry prices: £450 on the front-page card, and £2,250 / £950 /
-£1,300 on the audit card, which are the audit's own defaults at £150/hr.
-Changing a tier price in `index.html` makes both wrong, and nothing will say
-so. Rebuild them the same day.
+Both cards carry prices. The front-page card shows the founding start price
+and the two monthly founding fees. The audit card shows the audit's own
+defaults at £150/hr: £2,250 of hours, the Back Office founding fee of £75,
+and the £2,175 difference. Changing a tier price in `index.html` or in the
+audit's `TIERS` makes both wrong, and nothing will say so. Rebuild them the
+same day.
 
 Crawlers cache hard. A link already pasted somewhere will keep showing the old
 preview until that cache expires; LinkedIn's Post Inspector forces a refresh.

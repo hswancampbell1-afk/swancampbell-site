@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Swan Campbell">
 <meta property="og:title" content="The audit — Swan Campbell">
-<meta property="og:description" content="Six questions about your own week, then a number. And an ordinary Tuesday, shown in full.">
+<meta property="og:description" content="Five questions about your own week, then a number. And an ordinary Tuesday, shown in full.">
 <meta property="og:url" content="https://swancampbell.co.uk/audit">
 <meta property="og:image" content="https://swancampbell.co.uk/og-audit.png">
 <meta property="og:image:type" content="image/png">
@@ -226,7 +226,7 @@
 
   .tier-head, .tier {
     display: grid;
-    grid-template-columns: minmax(0,1fr) 86px 86px 104px;
+    grid-template-columns: minmax(0,1fr) 78px 112px 108px;
     align-items: baseline; gap: 0 18px;
     padding-left: 16px;
   }
@@ -388,6 +388,7 @@
     .tier { grid-template-columns: repeat(3, 1fr); gap: 12px 14px; padding-left: 12px; }
     .t-label { grid-column: 1 / -1; }
     .fig { text-align: left; }
+    .fig .each { white-space: normal; }
     .fig::before {
       content: attr(data-l); display: block;
       font-family: var(--f-body); font-size: 10.5px; font-weight: 600;
@@ -425,7 +426,7 @@
 
   <div class="hero">
     <h1>Count a week of it, then decide.</h1>
-    <p class="lede">Six questions about your own week, and then a figure you can weigh the fee against. <strong>Nothing is stored and nothing is sent</strong> — the numbers stay in this browser unless you press the link at the bottom.</p>
+    <p class="lede">Five questions about your own week, and then a figure you can weigh the fee against. <strong>Nothing is stored and nothing is sent</strong> — the numbers stay in this browser unless you press the link at the bottom.</p>
   </div>
 
 </div>
@@ -435,7 +436,7 @@
     <p class="label">Your week</p>
     <h2>Your numbers, not mine.</h2>
     <p>Estimate rather than guess — look at last week if you can. A figure you half-believe is worse than no figure.</p>
-    <p><b>Answer for one person: you.</b> If there are others in the practice, say how many at the last question and I'll take your week as typical of theirs. Every hours figure on this page is one person's unless it says otherwise.</p>
+    <p><b>Answer for one person: you.</b> Every hours figure on this page is one person's week, priced against one package.</p>
 
     <div class="q" id="q">
       <div class="q-row">
@@ -462,12 +463,6 @@
         </label>
         <input id="receipts" type="number" min="0" step="0.5" value="2" inputmode="decimal">
       </div>
-      <div class="q-row">
-        <label for="people">People with a week like yours
-          <span class="hint">Just you, or you and whoever else is drowning. Your answers are taken as typical for each of them, and only the <b>+</b> tiers cover more than one mailbox.</span>
-        </label>
-        <input id="people" type="number" min="1" step="1" value="1" inputmode="numeric">
-      </div>
       <div class="q-row wide">
         <label for="provider">What your mail runs on</label>
         <select id="provider">
@@ -484,69 +479,59 @@
   <div class="wrap">
     <p class="label">Which one</p>
     <h2>Which of them you're pricing.</h2>
-    <p>Inbox takes the inbox. Back Office takes the write-ups and the receipts as well &mdash; so it carries more of your week, and costs more. The two <b>+</b> tiers are the same work pooled across up to three mailboxes in one practice. All four are here so you can see the gaps rather than take my word for which one you want.</p>
+    <p>Inbox Starter takes the inbox: triage, the invoice chaser and a Monday round-up, for setup and the first month. Back Office takes the meeting notes and the receipts as well, and drafts the replies. Back Office+ is that, plus six on-request jobs a month. All three are here so you can see the gaps rather than take my word for which one you want.</p>
 
     <div class="tiers" role="radiogroup" aria-label="Which service to price">
       <div class="tier-head" aria-hidden="true">
         <span></span>
         <span>Hours</span>
-        <span>Fee</span>
+        <span>Founding</span>
         <span>Difference</span>
       </div>
 
-      <label class="tier" data-tier="inbox">
-        <input type="radio" name="tier" value="inbox">
+      <label class="tier" data-tier="starter">
+        <input type="radio" name="tier" value="starter">
         <span class="t-label">
-          <span class="t-name">Inbox</span>
-          <span class="t-what">One mailbox, sorted through the day, with replies drafted and waiting.</span>
+          <span class="t-name">Inbox Starter</span>
+          <span class="t-what">Triage, the invoice chaser and a Monday round-up. Setup and the first month — then carry on, or switch off.</span>
         </span>
-        <span class="fig hrs" data-l="Hours" id="f-inbox-hrs">&mdash;</span>
-        <span class="fig fee" data-l="Fee">&pound;450</span>
-        <span class="fig net" data-l="Difference" id="f-inbox-net">&mdash;</span>
-      </label>
-      <label class="tier" data-tier="inbox_plus">
-        <input type="radio" name="tier" value="inbox_plus">
-        <span class="t-label">
-          <span class="t-name">Inbox+</span>
-          <span class="t-what">The same, pooled across up to three mailboxes &mdash; one shared allowance, at the same &pound;450 each.</span>
-        </span>
-        <span class="fig hrs" data-l="Hours" id="f-inbox_plus-hrs">&mdash;</span>
-        <span class="fig fee" data-l="Fee">&pound;1,350</span>
-        <span class="fig net" data-l="Difference" id="f-inbox_plus-net">&mdash;</span>
+        <span class="fig hrs" data-l="Hours" id="f-starter-hrs">&mdash;</span>
+        <span class="fig fee" data-l="Founding">&pound;150<span class="each">standard &pound;250</span></span>
+        <span class="fig net" data-l="Difference" id="f-starter-net">&mdash;</span>
       </label>
       <label class="tier" data-tier="office">
         <input type="radio" name="tier" value="office">
         <span class="t-label">
           <span class="t-name">Back Office</span>
-          <span class="t-what">Everything Inbox does, plus the write-ups, the receipts and the prep.</span>
+          <span class="t-what">Everything in Inbox Starter, plus extraction, meeting notes, conflict checks and suggested replies. Monthly.</span>
         </span>
         <span class="fig hrs" data-l="Hours" id="f-office-hrs">&mdash;</span>
-        <span class="fig fee" data-l="Fee">&pound;950</span>
+        <span class="fig fee" data-l="Founding">&pound;75<span class="each">standard &pound;99</span></span>
         <span class="fig net" data-l="Difference" id="f-office-net">&mdash;</span>
       </label>
       <label class="tier" data-tier="office_plus">
         <input type="radio" name="tier" value="office_plus">
         <span class="t-label">
           <span class="t-name">Back Office+</span>
-          <span class="t-what">The same, pooled across up to three mailboxes. &pound;800 each rather than &pound;950.</span>
+          <span class="t-what">Everything in Back Office, plus six on-request jobs a month. Extras &pound;15. Monthly.</span>
         </span>
         <span class="fig hrs" data-l="Hours" id="f-office_plus-hrs">&mdash;</span>
-        <span class="fig fee" data-l="Fee">&pound;2,400</span>
+        <span class="fig fee" data-l="Founding">&pound;125<span class="each">standard &pound;175</span></span>
         <span class="fig net" data-l="Difference" id="f-office_plus-net">&mdash;</span>
       </label>
     </div>
-    <p class="also">Every figure here is a month &mdash; your weekly answers multiplied out at 4.3 weeks, so two hours a week shows as 8.7. <b>Hours</b> is what that one would take off you; the inbox tiers are credited with the inbox hours alone, because the inbox is all they touch, and the small line beneath each figure says whose hours they are. <b>Difference</b> is what those hours cost at your rate, less the fee.</p>
+    <p class="also">Every figure here is a month &mdash; your weekly answers multiplied out at 4.3 weeks, so two hours a week shows as 8.7. <b>Hours</b> is what that package would take off you. Inbox Starter is credited with the inbox hours alone, because triage, the invoice chaser and the Monday round-up are what it does; meeting notes and receipts sit on Back Office and Back Office+. <b>Difference</b> is what those hours cost at your rate, less the founding fee. Inbox Starter&rsquo;s fee is setup and the first month, not a monthly price. The line under each fee is the standard price, once the five founding places are gone. Founding prices are locked for 12 months, and a 50% deposit secures a place.</p>
 
     <p class="label label-2">The reading</p>
     <div class="reading">
       <h2 id="out-head">What that week already costs you</h2>
       <dl class="sum">
         <dt id="out-hours-label">The hours it takes off you, at your rate</dt>
-        <dd id="out-cost">£1,300</dd>
-        <dt class="rule" id="out-tier-label">The fee — Back Office</dt>
-        <dd class="rule" id="out-fee">£950</dd>
+        <dd id="out-cost">£2,250</dd>
+        <dt class="rule" id="out-tier-label">The fee — Back Office, founding</dt>
+        <dd class="rule" id="out-fee">£75</dd>
         <dt>The difference</dt>
-        <dd class="total" id="out-diff">£350</dd>
+        <dd class="total" id="out-diff">£2,175</dd>
       </dl>
       <p class="also" id="out-scope"></p>
       <p class="verdict" id="out-verdict"></p>
@@ -589,7 +574,7 @@
       </li>
       <li>
         <time>16:45</time>
-        <div class="what">One page on tomorrow's 9am. Who the company is, who's actually on the call, what their last filed accounts said, and the two things that have changed since you last met them — a director appointed in the spring, and a charge registered against the company since — <b>with a source next to every claim</b>, so you can check the one that matters before you repeat it.</div>
+        <div class="what">An invoice thirty-two days overdue, with a reminder drafted in the wording you approved. And tomorrow's 9am is flagged: it sits twenty minutes after a train gets in, which is the conflict check rather than something you were going to notice on the platform.</div>
       </li>
       <li>
         <time>18:00</time>
@@ -597,7 +582,7 @@
       </li>
     </ol>
 
-    <p class="also">Those volumes are the tier's own, not a good day: Back Office allows 2,000 messages, twelve write-ups, a hundred receipts and ten briefs a month. So ninety-odd messages a day is the shape it is priced for &mdash; and a write-up and a brief landing on the same Tuesday is three weeks in four, not every day.</p>
+    <p class="also">That Tuesday is Back Office, not every package. Inbox Starter is the triage, the invoice chaser and the Monday round-up. The drafts, the write-up, the receipts and the conflict check are what Back Office adds. A research brief is not a standing item in the afternoon: on Back Office+ it is one of six on-request jobs a month, and extras are £15.</p>
     <p class="also">Replies stay in those drafts until you send them. The only message the system can send is an overdue-invoice reminder, and only after you switch that on in writing and approve the template. That is <a href="/#guarantee">the guarantee</a>.</p>
   </div>
 </section>
@@ -606,9 +591,9 @@
   <div class="wrap">
     <div class="start">
       <h2>If the number surprised you</h2>
-      <p>Send it to me. The link below opens your own mail client with your six answers already in it — nothing has left this page until you press it, and you can delete any line you'd rather not share.</p>
+      <p>Send it to me. The link below opens your own mail client with your answers already in it — nothing has left this page until you press it, and you can delete any line you'd rather not share.</p>
       <p>What happens next is a twenty-minute call about your actual inbox, not a pitch. If it isn't worth doing I'll say so on the call rather than after your first invoice.</p>
-      <a class="mail" id="send" href="mailto:harrison@swancampbell.co.uk">harrison@swancampbell.co.uk</a>
+      <a class="mail" id="send" href="mailto:hswancampbell1@gmail.com">hswancampbell1@gmail.com</a>
     </div>
   </div>
 </section>
@@ -628,46 +613,35 @@
   // Keep the two pages agreeing; a prospect who checks will check this.
   var WEEKS = 13 / 3;
 
-  // Four tiers, Harrison's 12 Sep 2026 restructure. The "+" tiers are the
-  // same work pooled across up to three mailboxes in one practice, which
-  // is what `covers` means and the only thing headcount changes.
+  // Three packages from the founding offer, 5 Oct 2026. `fee` is the
+  // founding price and the one the difference uses. `standard` is what it
+  // costs once the five founding places are gone. Inbox Starter is setup
+  // and the first month, not an ongoing monthly fee; the other two are.
   //
-  //   scope   which of the reader's answers that tier actually takes on
-  //   covers  how many mailboxes it pools
-  //   pooled  the + twin of a solo tier / solo  the single-mailbox twin
-  //   lighter the same headcount, inbox-only - what Back Office is
-  //           measured against when the reader has no write-ups
-  //
-  // Fees are the panel's own PLAN_PRICES. Inbox+ at £1,350 is exactly
-  // three times £450 and is NOT a per-mailbox discount; Back Office+ at
-  // £2,400 is £800 a mailbox against £950 solo, and is. The page says so
-  // rather than letting a reader assume both work the same way.
+  //   scope  which of the reader's answers that package is credited with.
+  //          Inbox Starter takes the inbox hours only. Crediting it with
+  //          meeting notes or receipts it does not do would make it look
+  //          better than it is. Back Office+ adds six on-request jobs,
+  //          which these questions do not measure, so it shares Back
+  //          Office's hours and the verdict says so.
   var TIERS = {
-    inbox: {
-      name: "Inbox", fee: 450, covers: 1, scope: "inbox",
-      pooled: "inbox_plus"
-    },
-    inbox_plus: {
-      name: "Inbox+", fee: 1350, covers: 3, scope: "inbox",
-      solo: "inbox"
+    starter: {
+      name: "Inbox Starter", fee: 150, standard: 250, scope: "inbox"
     },
     office: {
-      name: "Back Office", fee: 950, covers: 1, scope: "full",
-      pooled: "office_plus", lighter: "inbox"
+      name: "Back Office", fee: 75, standard: 99, scope: "full"
     },
     office_plus: {
-      name: "Back Office+", fee: 2400, covers: 3, scope: "full",
-      solo: "office", lighter: "inbox_plus"
+      name: "Back Office+", fee: 125, standard: 175, scope: "full"
     }
   };
-  var ORDER = ["inbox", "inbox_plus", "office", "office_plus"];
+  var ORDER = ["starter", "office", "office_plus"];
 
   var f = {
     rate:     document.getElementById("rate"),
     inbox:    document.getElementById("inbox"),
     notes:    document.getElementById("notes"),
     receipts: document.getElementById("receipts"),
-    people:   document.getElementById("people"),
     provider: document.getElementById("provider")
   };
 
@@ -717,77 +691,45 @@
     return (Math.round(h * 10) / 10) + "h";
   }
 
-  function plural(n, one, many) {
-    return n === 1 ? one : many;
-  }
-
   function answers() {
     return {
       rate:     num(f.rate, 0),
       inbox:    num(f.inbox, 0),
       notes:    num(f.notes, 0),
       receipts: num(f.receipts, 0),
-      people:   Math.max(1, Math.round(num(f.people, 1))),
       provider: f.provider.value
     };
   }
 
-  // One person's month, from answers given for one person. The inbox
-  // tiers are credited with the inbox hours alone, because the inbox is
-  // all they touch - crediting them with write-ups they do not do would
-  // make the cheap options look better than they are.
-  function hoursEach(key, a) {
+  // One person's month. Inbox Starter is credited with the inbox hours
+  // alone, because triage, the invoice chaser and the Monday round-up are
+  // what it does. Crediting it with meeting notes or receipts would make
+  // the cheaper package look better than it is.
+  function hoursFor(key, a) {
     var full    = TIERS[key].scope === "full";
     var weekly  = a.inbox + (full ? a.notes : 0);
     var monthly = full ? a.receipts : 0;
     return weekly * WEEKS + monthly;
   }
 
-  // How many mailboxes a tier actually covers. A solo tier is one mailbox
-  // however many people are drowning; a + tier pools three and no more,
-  // so a practice of five is still priced and credited at three.
-  function headsCovered(key, a) {
-    return Math.min(a.people, TIERS[key].covers);
-  }
-
-  function hoursFor(key, a) {
-    return hoursEach(key, a) * headsCovered(key, a);
-  }
-
   function suggest(a) {
-    var full   = a.notes > 0 || a.receipts > 0;
-    var pooled = a.people >= 2;
-    if (full && pooled) { return "office_plus"; }
-    if (full)           { return "office"; }
-    if (pooled)         { return "inbox_plus"; }
-    return "inbox";
+    if (a.notes > 0 || a.receipts > 0) { return "office"; }
+    return "starter";
   }
 
-  // The line under each Hours figure saying whose hours they are. Shown
-  // only when there is more than one person, because with one person
-  // every figure on the page is already yours and the note would be noise.
-  function scopeUnder(key, a) {
-    if (a.people < 2) { return ""; }
-    var heads = headsCovered(key, a);
-    if (heads === 1) { return "one mailbox"; }
-    return hoursText(hoursEach(key, a)) + " each, " + heads + " mailboxes";
-  }
-
-  function scopeNote(key, a) {
-    if (a.people < 2) { return ""; }
-    var t     = TIERS[key];
-    var each  = hoursText(hoursEach(key, a));
-    var heads = headsCovered(key, a);
-
-    if (heads > 1) {
-      return "Those are the practice's hours — " + each + " each, across " + heads +
-             plural(heads, " mailbox", " mailboxes") +
-             (a.people > 3 ? " (the + tiers pool three; you said " + a.people + ")" : "") +
-             ". Inbox and Back Office cover one mailbox, so their hours are one person's.";
+  function scopeNote(key) {
+    var t = TIERS[key];
+    var line = "The difference uses the founding fee";
+    if (key === "starter") {
+      line += ", which is setup and the first month, set against one month of those hours";
+    } else {
+      line += ", " + money(t.fee) + " a month";
     }
-    return "Those are one person's hours — " + t.name + " covers one mailbox, whoever else is " +
-           "drowning. " + TIERS[t.pooled].name + " is the one that pools " +
-           Math.min(a.people, 3) + " of you, at " + each + " each.";
+    line += ". Standard would be " + money(t.standard) + ".";
+    if (key === "office_plus") {
+      line += " The six on-request jobs are not in the hours above.";
+    }
+    return line;
   }
 
   function verdict(key, a, hours, cost) {
@@ -799,49 +741,44 @@
              "With nothing in it, it can't.";
     }
 
-    var whose = (headsCovered(key, a) > 1) ? " off the practice" : " off you";
     var lead;
     if (diff > 0) {
       lead = "On your own numbers, the " + hoursText(hours) + " a month <b>" + t.name +
-             "</b> would take" + whose + " costs you <b>" + money(diff) + " a month more than the fee</b> " +
-             "— and that is before the part nobody prices, which is doing it at nine in the evening. " +
+             "</b> would take off you costs you <b>" + money(diff) +
+             (key === "starter"
+               ? " more than the founding fee</b> for setup and the first month"
+               : " a month more than the founding fee</b>") +
+             " — and that is before the part nobody prices, which is doing it at nine in the evening. " +
              "How much of it actually comes back is the thing to find out, not to assume.";
     } else {
       lead = "On your own numbers, <b>" + t.name + "</b> costs <b>" + money(Math.abs(diff)) +
-             " a month more than the " + hoursText(hours) + " it would take" + whose + "</b>. " +
-             "That's a real answer and it points at no — for this one, at least. " +
+             (key === "starter"
+               ? " more than the " + hoursText(hours) + " it would take off you</b> in that first month"
+               : " a month more than the " + hoursText(hours) + " it would take off you</b>") +
+             ". That's a real answer and it points at no — for this one, at least. " +
              "I'd rather you worked that out here than three invoices in.";
     }
 
-    // The honest footnotes. Each is a case where the chosen tier is the
-    // wrong shape for the answers given, and saying so is worth more than
-    // the sale.
-    // Two of these can be true at once - a tier can be both too much
-    // service and too few mailboxes - so they accumulate rather than
-    // race. When both fire, neither twin is the answer on its own and
-    // the last line names the one that is.
+    // The honest footnotes. A package can be the wrong shape for the
+    // answers, and saying so is worth more than the sale. Back Office+
+    // is never the honest choice on hours alone: the extra is jobs this
+    // sum does not measure.
     var notes = [];
-    var wrongScope = (t.scope === "full" && a.notes === 0 && a.receipts === 0);
-    var tooFew     = (t.covers === 1 && a.people > 1);
-    var tooMany    = (t.covers > 1 && a.people === 1);
+    var inboxOnly = (a.notes === 0 && a.receipts === 0);
 
-    if (wrongScope) {
-      var lighter = TIERS[t.lighter];
-      notes.push("You've put nothing down for write-ups or receipts, so " + t.name +
-                 " would take exactly what " + lighter.name + " takes and cost " +
-                 money(t.fee - lighter.fee) + " more for it." +
-                 (tooFew ? "" : " On these answers, " + lighter.name + " is the honest choice."));
+    if (key === "office_plus") {
+      notes.push("Back Office+ covers the same measured hours as Back Office. The extra " +
+                 money(t.fee - TIERS.office.fee) + " a month founding is six on-request jobs, which this sum doesn't price. Extras after six are £15.");
     }
-    if (tooFew) {
-      notes.push(t.name + " is one mailbox. For " + a.people + " people that's " +
-                 TIERS[t.pooled].name + ", not " + a.people + " lots of this.");
-    } else if (tooMany) {
-      var solo = TIERS[t.solo];
-      notes.push(t.name + " pools three mailboxes. On one, " + solo.name +
-                 " is the same service for " + money(t.fee - solo.fee) + " less.");
+    if (key !== "starter" && inboxOnly) {
+      notes.push("You've put nothing down for meeting notes or receipts, so the hours are only the inbox. Inbox Starter is the one priced for that.");
     }
-    if (wrongScope && tooFew) {
-      notes.push(TIERS[TIERS[t.lighter].pooled].name + " is the one that's both.");
+    if (key === "starter" && !inboxOnly) {
+      notes.push("Inbox Starter doesn't take the meeting notes or the receipts. Back Office does, at " +
+                 money(TIERS.office.fee) + " a month founding.");
+    }
+    if ((diff > 0) !== (cost - t.standard > 0)) {
+      notes.push("That's at the founding fee. At the standard price of " + money(t.standard) + " the difference changes sign.");
     }
 
     return lead + (notes.length ? " " + notes.join(" ") : "");
@@ -863,7 +800,7 @@
 
   function body(key, a, hours, cost) {
     var t = TIERS[key];
-    var heads = headsCovered(key, a);
+    var period = (key === "starter") ? "setup and the first month" : "a month";
     var L = [
       "Numbers from the audit page. The hours are one person's — mine:",
       "",
@@ -871,24 +808,20 @@
       "Inbox, hours a week:        " + a.inbox,
       "Write-ups, hours a week:    " + a.notes,
       "Receipts, hours a month:    " + a.receipts,
-      "People with a week like it: " + a.people,
       "Mail runs on:               " + (a.provider === "ms" ? "Microsoft 365"
                                       : a.provider === "google" ? "Google Workspace" : "Something else"),
       "",
-      "I'm looking at " + t.name + ", at " + money(t.fee) + " a month.",
-      (heads > 1
-        ? "That pools " + heads + " mailboxes at " + hoursText(hoursEach(key, a)) + " each — " +
-          hoursText(hours) + " a month across the practice, worth " + money(cost) + "."
-        : "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + "."),
+      "I'm looking at " + t.name + ", founding " + money(t.fee) + " for " + period +
+        " (standard " + money(t.standard) + ").",
+      "On my figures that's " + hoursText(hours) + " a month it would take off me, worth " + money(cost) + ".",
       ""
     ];
     ORDER.forEach(function (k) {
       if (k === key) { return; }
-      var h  = hoursFor(k, a);
-      var hs = headsCovered(k, a);
+      var h = hoursFor(k, a);
       L.push("(" + TIERS[k].name + " for comparison: " + hoursText(h) +
-             (hs > 1 ? " across " + hs + " mailboxes" : " for one mailbox") + ", worth " +
-             money(h * a.rate) + ", against " + money(TIERS[k].fee) + ".)");
+             ", worth " + money(h * a.rate) + ", against founding " + money(TIERS[k].fee) +
+             ", standard " + money(TIERS[k].standard) + ".)");
     });
     L.push("", "What I'd want to ask about first:", "");
     return L.join("\n");
@@ -901,8 +834,7 @@
     ORDER.forEach(function (k) {
       var h = hoursFor(k, a);
       var r = rows[k];
-      var under = scopeUnder(k, a);
-      r.hrs.innerHTML = hoursText(h) + (under ? '<span class="each">' + under + "</span>" : "");
+      r.hrs.textContent = hoursText(h);
       r.net.textContent = signed(h * a.rate - TIERS[k].fee);
       r.el.classList.toggle("on", k === key);
       r.radio.checked = (k === key);
@@ -914,27 +846,21 @@
     var diff  = cost - t.fee;
 
     out.head.textContent = "What " + t.name + " would be worth to you";
-    out.hoursLbl.textContent = (headsCovered(key, a) > 1)
-      ? "The practice's hours, at your rate"
-      : "The hours it takes off you, at your rate";
+    out.hoursLbl.textContent = "The hours it takes off you, at your rate";
     out.cost.textContent = money(cost);
-    out.tier.textContent = "The fee — " + t.name;
+    out.tier.textContent = (key === "starter")
+      ? "Founding — Inbox Starter, setup + first month"
+      : "Founding fee — " + t.name + ", a month";
     out.fee.textContent  = money(t.fee);
     out.diff.textContent = signed(diff);
 
-    var scope = scopeNote(key, a);
-    out.scope.textContent = scope;
-    out.scope.hidden = !scope;
+    out.scope.textContent = scopeNote(key);
+    out.scope.hidden = false;
 
     out.verdict.innerHTML = verdict(key, a, hours, cost);
-
     out.provider.textContent = providerNote(a);
-    if (a.people > 3) {
-      out.provider.textContent += " More than three mailboxes is past what the + tiers pool — " +
-                                  "say how many and I'll price it honestly rather than stretch a tier.";
-    }
 
-    out.send.href = "mailto:harrison@swancampbell.co.uk" +
+    out.send.href = "mailto:hswancampbell1@gmail.com" +
                     "?subject=" + encodeURIComponent("The audit — " + t.name) +
                     "&body="    + encodeURIComponent(body(key, a, hours, cost));
   }
